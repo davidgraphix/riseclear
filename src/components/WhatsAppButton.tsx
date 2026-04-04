@@ -6,27 +6,18 @@ import { MessageCircle, X, Phone } from "lucide-react";
 
 export default function WhatsAppButton() {
   const [isOpen, setIsOpen] = useState(false);
-  const [showPulse, setShowPulse] = useState(true);
   const [visible, setVisible] = useState(false);
+  const [showPulse, setShowPulse] = useState(true);
 
-  // Show after 2s delay
   useEffect(() => {
-    const t = setTimeout(() => setVisible(true), 2000);
-    return () => clearTimeout(t);
-  }, []);
-
-  // Stop pulsing after 8s
-  useEffect(() => {
-    const t = setTimeout(() => setShowPulse(false), 8000);
-    return () => clearTimeout(t);
+    const t1 = setTimeout(() => setVisible(true), 2500);
+    const t2 = setTimeout(() => setShowPulse(false), 10000);
+    return () => { clearTimeout(t1); clearTimeout(t2); };
   }, []);
 
   if (!visible) return null;
 
-  const waMessage = encodeURIComponent(
-    "Hello, I'm interested in your cleaning services"
-  );
-  const waUrl = `https://wa.me/14318164106?text=${waMessage}`;
+  const waUrl = `https://wa.me/14318164106?text=${encodeURIComponent("Hello, I'm interested in your cleaning services")}`;
 
   return (
     <div
@@ -37,71 +28,67 @@ export default function WhatsAppButton() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.85, y: 20, transformOrigin: "bottom right" }}
+            initial={{ opacity: 0, scale: 0.88, y: 16 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.85, y: 20 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="bg-brand-darker border border-brand-border rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] w-72 sm:w-80 overflow-hidden"
+            exit={{ opacity: 0, scale: 0.88, y: 16 }}
+            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="w-72 sm:w-80 rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(15,23,42,0.18),0_4px_20px_rgba(15,23,42,0.10)] border border-brand-border bg-white"
             role="dialog"
-            aria-label="Contact options"
+            aria-label="Chat with RiseClear"
           >
             {/* Header */}
             <div className="bg-[#25D366] px-5 py-4 flex items-center gap-3">
               <div className="relative">
                 <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                  <span className="text-white font-display font-700 text-sm">RC</span>
+                  <span className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-plus-jakarta)" }}>RC</span>
                 </div>
-                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-400 rounded-full border-2 border-[#25D366]" />
+                <span className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-300 rounded-full border-2 border-[#25D366]" />
               </div>
               <div className="flex-1">
-                <p className="text-white font-body font-600 text-sm leading-tight">
-                  RiseClear Property Services
-                </p>
-                <p className="text-white/80 text-xs">
-                  Typically replies in minutes
-                </p>
+                <p className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-plus-jakarta)" }}>RiseClear Property Services</p>
+                <p className="text-white/80 text-xs mt-0.5">Typically replies in minutes</p>
               </div>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-white/70 hover:text-white transition-colors cursor-pointer p-1 rounded-full hover:bg-white/10"
-                aria-label="Close chat widget"
+                className="text-white/70 hover:text-white transition-colors cursor-pointer p-1 rounded-full hover:bg-white/15"
+                aria-label="Close"
               >
                 <X className="w-4 h-4" />
               </button>
             </div>
 
             {/* Chat bubble */}
-            <div className="px-5 py-5 bg-[#ECE5DD] bg-opacity-5">
-              <div className="bg-white/5 border border-brand-border rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%]">
-                <p className="font-body text-sm text-brand-white leading-relaxed">
+            <div className="px-5 py-5 bg-brand-surface">
+              <div className="bg-white border border-brand-border rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] shadow-soft">
+                <p className="text-sm text-brand-body leading-relaxed" style={{ fontFamily: "var(--font-inter)" }}>
                   👋 Hi! Thanks for visiting RiseClear.
                   <br />
                   How can we help you today?
                 </p>
-                <p className="text-[10px] text-brand-muted mt-1.5 text-right">
-                  RiseClear Team
-                </p>
+                <p className="text-[10px] text-brand-muted mt-1.5 text-right">RiseClear Team</p>
               </div>
             </div>
 
-            {/* CTA buttons */}
-            <div className="px-5 pb-5 space-y-2.5">
+            {/* CTAs */}
+            <div className="px-5 pb-5 space-y-2.5 bg-brand-surface">
               <a
                 href={waUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-body font-600 text-sm py-3.5 rounded-xl transition-all duration-200 shadow-md"
+                className="flex items-center justify-center gap-2.5 w-full bg-[#25D366] hover:bg-[#20BA5A] text-white font-semibold text-sm py-3.5 rounded-xl transition-all duration-200 shadow-md"
                 aria-label="Start WhatsApp chat"
                 onClick={() => setIsOpen(false)}
+                style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 <MessageCircle className="w-4 h-4" />
                 Start WhatsApp Chat
               </a>
               <a
                 href="tel:+14318164106"
-                className="flex items-center justify-center gap-2.5 w-full glass border border-brand-border hover:border-brand-blue/40 text-brand-white font-body font-500 text-sm py-3 rounded-xl transition-all duration-200"
+                className="flex items-center justify-center gap-2.5 w-full bg-white hover:bg-brand-surface border border-brand-border text-brand-ink font-semibold text-sm py-3 rounded-xl transition-all duration-200"
                 aria-label="Call RiseClear"
                 onClick={() => setIsOpen(false)}
+                style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 <Phone className="w-4 h-4 text-brand-blue" />
                 Call +1 431 816 4106
@@ -111,43 +98,31 @@ export default function WhatsAppButton() {
         )}
       </AnimatePresence>
 
-      {/* Main FAB button */}
+      {/* FAB */}
       <motion.button
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 0.1, type: "spring", stiffness: 300, damping: 20 }}
+        transition={{ delay: 0.15, type: "spring", stiffness: 280, damping: 22 }}
         onClick={() => setIsOpen((o) => !o)}
-        className="relative flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full shadow-[0_8px_30px_rgba(37,211,102,0.4)] hover:shadow-[0_8px_40px_rgba(37,211,102,0.6)] transition-all duration-300 hover:scale-110 cursor-pointer"
-        aria-label={isOpen ? "Close chat widget" : "Open WhatsApp chat"}
+        className="relative w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full shadow-[0_6px_24px_rgba(37,211,102,0.45)] hover:shadow-[0_8px_32px_rgba(37,211,102,0.60)] flex items-center justify-center transition-all duration-300 hover:scale-110 cursor-pointer"
+        aria-label={isOpen ? "Close chat" : "Open WhatsApp chat"}
         aria-expanded={isOpen}
       >
         {/* Pulse rings */}
         {showPulse && !isOpen && (
           <>
-            <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-40" />
-            <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 animation-delay-150" />
+            <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-35" />
+            <span className="absolute inset-0 rounded-full bg-[#25D366] animate-ping opacity-20 [animation-delay:0.4s]" />
           </>
         )}
 
         <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.div
-              key="close"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+            <motion.div key="x" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.2 }}>
               <X className="w-6 h-6" />
             </motion.div>
           ) : (
-            <motion.div
-              key="wa"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
-              transition={{ duration: 0.2 }}
-            >
+            <motion.div key="wa" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.2 }}>
               <MessageCircle className="w-6 h-6" />
             </motion.div>
           )}

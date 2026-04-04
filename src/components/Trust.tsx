@@ -3,150 +3,139 @@
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { Shield, Zap, Award, Heart } from "lucide-react";
+import { ShieldCheck, Zap, Award, MapPin } from "lucide-react";
 
-const trustPoints = [
+const points = [
   {
-    icon: Shield,
+    icon: ShieldCheck,
     title: "Fully Insured & Bonded",
-    desc: "Complete peace of mind. All our team members are background-checked, insured and trained to the highest standard.",
-    accent: "text-blue-400",
-    bg: "bg-blue-400/10",
-    border: "border-blue-400/20",
+    desc: "Every team member is background-checked, insured, and trained to professional standards. Total peace of mind on every job.",
+    color: "bg-blue-50 text-brand-blue border-blue-100",
+    iconBg: "bg-brand-blue-light",
   },
   {
     icon: Zap,
     title: "Fast & Reliable",
-    desc: "We show up on time, every time. Same-day and next-day appointments available across Winnipeg and surrounding areas.",
-    accent: "text-yellow-400",
-    bg: "bg-yellow-400/10",
-    border: "border-yellow-400/20",
+    desc: "Same-day and next-day appointments available. We show up on time and complete every job efficiently without cutting corners.",
+    color: "bg-amber-50 text-amber-600 border-amber-100",
+    iconBg: "bg-amber-50",
   },
   {
     icon: Award,
-    title: "Satisfaction Guaranteed",
-    desc: "If you're not 100% happy with our work, we'll come back and fix it — no questions asked, no extra charge.",
-    accent: "text-emerald-400",
-    bg: "bg-emerald-400/10",
-    border: "border-emerald-400/20",
+    title: "Results Guaranteed",
+    desc: "Not 100% satisfied? We return within 24 hours to make it right — no questions, no extra charge. That's our promise.",
+    color: "bg-emerald-50 text-emerald-600 border-emerald-100",
+    iconBg: "bg-emerald-50",
   },
   {
-    icon: Heart,
-    title: "Local Winnipeg Team",
-    desc: "Proudly local. We understand Manitoba winters and summers — and exactly what your property needs year-round.",
-    accent: "text-rose-400",
-    bg: "bg-rose-400/10",
-    border: "border-rose-400/20",
+    icon: MapPin,
+    title: "Proudly Winnipeg-Based",
+    desc: "We know Manitoba's climate and what local homes need year-round. Serving Winnipeg and surrounding areas since day one.",
+    color: "bg-purple-50 text-purple-600 border-purple-100",
+    iconBg: "bg-purple-50",
   },
 ];
 
-function TrustCard({
-  icon: Icon,
-  title,
-  desc,
-  accent,
-  bg,
-  border,
-  index,
-}: (typeof trustPoints)[0] & { index: number }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
-
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{
-        delay: index * 0.1,
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      className={`group relative glass p-6 lg:p-7 rounded-2xl border ${border} hover:bg-white/[0.04] transition-all duration-300 hover:-translate-y-1 hover:shadow-card`}
-    >
-      <div className={`w-12 h-12 ${bg} ${border} border rounded-xl flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300`}>
-        <Icon className={`w-5 h-5 ${accent}`} strokeWidth={1.8} />
-      </div>
-      <h3 className="font-display font-700 text-base text-brand-white mb-2.5 tracking-tight">
-        {title}
-      </h3>
-      <p className="font-body font-300 text-sm text-brand-light leading-relaxed">
-        {desc}
-      </p>
-    </motion.div>
-  );
-}
+const stats = [
+  { value: "200+", label: "Happy Clients" },
+  { value: "5.0★", label: "Average Rating" },
+  { value: "3+", label: "Years in Business" },
+  { value: "100%", label: "Satisfaction Rate" },
+];
 
 export default function Trust() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="trust" className="relative section-pad" aria-label="Why choose RiseClear">
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-surface/30 to-brand-dark pointer-events-none" />
-
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="trust"
+      className="relative section-pad bg-brand-surface"
+      aria-label="Why choose RiseClear"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-14" ref={ref}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-border bg-brand-surface/60 mb-5"
+            className="section-label justify-center"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse-slow" />
-            <span className="text-xs text-brand-muted uppercase tracking-widest font-body">
-              Why Choose Us
-            </span>
-          </motion.div>
-
+            Why Choose Us
+          </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="font-display font-800 text-3xl sm:text-4xl lg:text-5xl text-brand-white tracking-tight mb-4"
+            transition={{ delay: 0.08 }}
+            className="text-3xl sm:text-4xl lg:text-[2.625rem] font-bold text-brand-ink tracking-tight mb-4"
+            style={{ fontFamily: "var(--font-plus-jakarta)" }}
           >
             The RiseClear{" "}
             <span className="gradient-text">Difference</span>
           </motion.h2>
-
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.14 }}
-            className="font-body font-300 text-brand-light text-base sm:text-lg max-w-xl mx-auto"
+            transition={{ delay: 0.14 }}
+            className="text-brand-body text-[1.0625rem] max-w-xl mx-auto"
+            style={{ fontFamily: "var(--font-inter)" }}
           >
             We don&apos;t just clean — we deliver an experience that makes your
             property shine and your life easier.
           </motion.p>
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
-          {trustPoints.map((point, i) => (
-            <TrustCard key={point.title} {...point} index={i} />
-          ))}
+        {/* Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
+          {points.map((p, i) => {
+            const Icon = p.icon;
+            return (
+              <motion.div
+                key={p.title}
+                initial={{ opacity: 0, y: 30 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.09, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+                className="card p-6 bg-white"
+              >
+                <div className={`w-12 h-12 ${p.iconBg} rounded-xl flex items-center justify-center mb-5`}>
+                  <Icon className={`w-5.5 h-5.5 w-6 h-6 ${p.color.split(" ")[1]}`} strokeWidth={1.8} />
+                </div>
+                <h3
+                  className="font-semibold text-[0.9375rem] text-brand-ink mb-2"
+                  style={{ fontFamily: "var(--font-plus-jakarta)" }}
+                >
+                  {p.title}
+                </h3>
+                <p
+                  className="text-sm text-brand-muted leading-relaxed"
+                  style={{ fontFamily: "var(--font-inter)" }}
+                >
+                  {p.desc}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Stats row */}
+        {/* Stats bar */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-14 glass border border-brand-border rounded-2xl p-6 sm:p-8"
+          transition={{ delay: 0.5 }}
+          className="bg-brand-blue rounded-2xl px-6 py-8 sm:py-10 shadow-blue"
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-brand-border">
-            {[
-              { value: "200+", label: "Happy Clients" },
-              { value: "5★", label: "Average Rating" },
-              { value: "3+", label: "Years in Business" },
-              { value: "100%", label: "Satisfaction Rate" },
-            ].map((stat) => (
-              <div key={stat.label} className="text-center lg:px-8">
-                <p className="font-display font-800 text-3xl sm:text-4xl gradient-text mb-1">
-                  {stat.value}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-0 lg:divide-x lg:divide-blue-400/30">
+            {stats.map((s) => (
+              <div key={s.label} className="text-center lg:px-8">
+                <p
+                  className="text-3xl sm:text-4xl font-bold text-white mb-1"
+                  style={{ fontFamily: "var(--font-plus-jakarta)" }}
+                >
+                  {s.value}
                 </p>
-                <p className="font-body text-sm text-brand-muted">{stat.label}</p>
+                <p className="text-sm text-blue-200" style={{ fontFamily: "var(--font-inter)" }}>
+                  {s.label}
+                </p>
               </div>
             ))}
           </div>

@@ -15,91 +15,80 @@ const navLinks = [
 ];
 
 const serviceLinks = [
-  "Window Cleaning",
-  "Gutter Cleaning",
-  "Home Cleaning",
-  "Deep Cleaning",
-  "Pressure Washing",
-  "Move-In / Move-Out",
-  "LED Light Installation",
+  { label: "Window Cleaning", href: "#services" },
+  { label: "Gutter Cleaning", href: "#services" },
+  { label: "Home Cleaning", href: "#services" },
+  { label: "Deep Cleaning", href: "#services" },
+  { label: "Pressure Washing", href: "#services" },
+  { label: "Move-In / Move-Out", href: "#services" },
+  { label: "LED Light Installation", href: "#services" },
 ];
 
 export default function Footer() {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
-  const scrollTo = (href: string) => {
+  const scrollTo = (href: string) =>
     document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
-  };
 
   const year = new Date().getFullYear();
 
   return (
     <footer
-      className="relative bg-brand-darker border-t border-brand-border overflow-hidden"
-      aria-label="Footer"
+      className="bg-brand-ink text-white"
+      aria-label="RiseClear footer"
     >
-      {/* Top gradient line */}
-      <div className="divider" aria-hidden="true" />
-
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Main footer content */}
+      {/* Main content */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl" ref={ref}>
         <div className="py-14 lg:py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+
           {/* Brand column */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0, duration: 0.5 }}
+            transition={{ duration: 0.5 }}
             className="lg:col-span-1"
           >
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center gap-2.5 group mb-5 w-fit"
-              aria-label="RiseClear Property Services"
-            >
-              <div className="relative w-9 h-9">
-                <div className="absolute inset-0 bg-brand-blue rounded-lg rotate-12 opacity-60 group-hover:rotate-45 transition-transform duration-500" />
-                <div className="absolute inset-0 bg-brand-blue rounded-lg flex items-center justify-center">
-                  <span className="text-white font-display font-800 text-base leading-none select-none">
-                    R
-                  </span>
+            <Link href="/" className="flex items-center gap-3 group mb-5 w-fit" aria-label="RiseClear">
+              <div className="relative w-10 h-10 flex-shrink-0">
+                <div className="absolute inset-0 bg-brand-blue rounded-xl" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
+                    <path d="M2 2h6a4 4 0 0 1 0 8H2V2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M8 10l4 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M20 4.5A5.5 5.5 0 0 0 14.5 2" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round"/>
+                    <path d="M20 13.5A5.5 5.5 0 0 1 14.5 16H13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+                  </svg>
                 </div>
               </div>
               <div>
-                <span className="font-display font-700 text-[16px] tracking-tight text-brand-white block">
-                  Rise<span className="text-brand-blue">Clear</span>
+                <span className="font-bold text-[1.0625rem] text-white tracking-tight block"
+                      style={{ fontFamily: "var(--font-plus-jakarta)" }}>
+                  Rise<span className="text-brand-blue-bright" style={{ color: "#60A5FA" }}>Clear</span>
                 </span>
-                <span className="text-[9px] text-brand-muted uppercase tracking-[0.15em] block -mt-0.5">
+                <span className="text-[9px] text-slate-400 uppercase tracking-[0.14em] block mt-0.5">
                   Property Services
                 </span>
               </div>
             </Link>
 
-            <p className="font-body font-300 text-sm text-brand-light leading-relaxed mb-6 max-w-xs">
-              Winnipeg&apos;s trusted property cleaning specialists. Premium
-              window cleaning, gutter care, pressure washing and more.
+            <p className="text-sm text-slate-400 leading-relaxed mb-6 max-w-xs" style={{ fontFamily: "var(--font-inter)" }}>
+              Winnipeg&apos;s trusted property cleaning specialists. Premium window cleaning, gutter care, pressure washing and LED installation.
             </p>
 
-            {/* Contact quick links */}
             <div className="space-y-3">
-              <a
-                href="tel:+14318164106"
-                className="flex items-center gap-2.5 text-sm font-body text-brand-light hover:text-brand-white transition-colors duration-200 group"
-                aria-label="Call RiseClear"
-              >
+              <a href="tel:+14318164106" className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-white transition-colors group"
+                 aria-label="Call RiseClear">
                 <Phone className="w-4 h-4 text-brand-blue flex-shrink-0 group-hover:scale-110 transition-transform" />
                 +1 431 816 4106
               </a>
-              <a
-                href="mailto:info@risecleaning.ca"
-                className="flex items-center gap-2.5 text-sm font-body text-brand-light hover:text-brand-white transition-colors duration-200 group"
-                aria-label="Email RiseClear"
-              >
+              <a href="mailto:info@risecleaning.ca" className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-white transition-colors group"
+                 aria-label="Email RiseClear">
                 <Mail className="w-4 h-4 text-brand-blue flex-shrink-0 group-hover:scale-110 transition-transform" />
                 info@risecleaning.ca
               </a>
-              <div className="flex items-center gap-2.5 text-sm font-body text-brand-light">
+              <div className="flex items-center gap-2.5 text-sm text-slate-300">
                 <MapPin className="w-4 h-4 text-brand-blue flex-shrink-0" />
                 Winnipeg, Manitoba, Canada
               </div>
@@ -107,7 +96,7 @@ export default function Footer() {
                 href="https://wa.me/14318164106?text=Hello%2C%20I%27m%20interested%20in%20your%20cleaning%20services"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2.5 text-sm font-body text-brand-light hover:text-[#25D366] transition-colors duration-200 group"
+                className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-[#25D366] transition-colors group"
                 aria-label="WhatsApp RiseClear"
               >
                 <MessageCircle className="w-4 h-4 text-[#25D366] flex-shrink-0 group-hover:scale-110 transition-transform" />
@@ -120,9 +109,10 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1, duration: 0.5 }}
+            transition={{ delay: 0.08, duration: 0.5 }}
           >
-            <h3 className="font-body font-600 text-xs uppercase tracking-widest text-brand-muted mb-5">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5"
+                style={{ fontFamily: "var(--font-inter)" }}>
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -130,9 +120,10 @@ export default function Footer() {
                 <li key={link.label}>
                   <button
                     onClick={() => scrollTo(link.href)}
-                    className="text-sm font-body text-brand-light hover:text-brand-white transition-colors duration-200 cursor-pointer group flex items-center gap-1"
+                    className="text-sm text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer group flex items-center gap-1.5"
+                    style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-brand-blue transition-all duration-200 overflow-hidden" />
+                    <span className="w-0 group-hover:w-3 h-0.5 bg-brand-blue transition-all duration-200 rounded-full" />
                     {link.label}
                   </button>
                 </li>
@@ -144,116 +135,104 @@ export default function Footer() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.15, duration: 0.5 }}
+            transition={{ delay: 0.14, duration: 0.5 }}
           >
-            <h3 className="font-body font-600 text-xs uppercase tracking-widest text-brand-muted mb-5">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5"
+                style={{ fontFamily: "var(--font-inter)" }}>
               Our Services
             </h3>
             <ul className="space-y-3">
-              {serviceLinks.map((service) => (
-                <li key={service}>
+              {serviceLinks.map((s) => (
+                <li key={s.label}>
                   <button
-                    onClick={() => scrollTo("#services")}
-                    className="text-sm font-body text-brand-light hover:text-brand-white transition-colors duration-200 cursor-pointer group flex items-center gap-1"
+                    onClick={() => scrollTo(s.href)}
+                    className="text-sm text-slate-300 hover:text-white transition-colors duration-200 cursor-pointer group flex items-center gap-1.5"
+                    style={{ fontFamily: "var(--font-inter)" }}
                   >
-                    <span className="w-0 group-hover:w-2 h-px bg-brand-blue transition-all duration-200 overflow-hidden" />
-                    {service}
+                    <span className="w-0 group-hover:w-3 h-0.5 bg-brand-blue transition-all duration-200 rounded-full" />
+                    {s.label}
                   </button>
                 </li>
               ))}
             </ul>
           </motion.div>
 
-          {/* CTA column */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
           >
-            <h3 className="font-body font-600 text-xs uppercase tracking-widest text-brand-muted mb-5">
+            <h3 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-5"
+                style={{ fontFamily: "var(--font-inter)" }}>
               Get a Free Quote
             </h3>
-            <p className="font-body font-300 text-sm text-brand-light leading-relaxed mb-5">
-              Ready for crystal-clear windows and a pristine property? Contact us
-              today — no obligation, no hidden fees.
+            <p className="text-sm text-slate-400 leading-relaxed mb-5" style={{ fontFamily: "var(--font-inter)" }}>
+              Ready for crystal-clear windows and a pristine property? Contact us — no obligation, no hidden fees.
             </p>
-
             <div className="space-y-3">
               <a
                 href="tel:+14318164106"
-                className="group flex items-center justify-center gap-2.5 w-full bg-brand-blue hover:bg-brand-blue-bright text-white font-body font-600 text-sm py-3 rounded-xl transition-all duration-300 hover:shadow-glow-sm"
-                aria-label="Call RiseClear for a quote"
+                className="group flex items-center justify-center gap-2.5 w-full bg-brand-blue hover:bg-brand-blue-dark text-white font-semibold text-sm py-3 rounded-xl transition-all duration-200 shadow-blue"
+                aria-label="Call for a quote"
+                style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 <Phone className="w-4 h-4" />
                 Call Now
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
-
               <a
                 href="https://wa.me/14318164106?text=Hello%2C%20I%27m%20interested%20in%20your%20cleaning%20services"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2.5 w-full bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/25 hover:border-[#25D366]/50 text-brand-white font-body font-500 text-sm py-3 rounded-xl transition-all duration-300"
-                aria-label="WhatsApp RiseClear for a quote"
+                className="flex items-center justify-center gap-2.5 w-full border border-[#25D366]/30 hover:border-[#25D366]/70 bg-[#25D366]/5 hover:bg-[#25D366]/15 text-white font-semibold text-sm py-3 rounded-xl transition-all duration-200"
+                aria-label="WhatsApp for a quote"
+                style={{ fontFamily: "var(--font-plus-jakarta)" }}
               >
                 <MessageCircle className="w-4 h-4 text-[#25D366]" />
                 WhatsApp Us
               </a>
             </div>
 
-            {/* Trust badge */}
-            <div className="mt-6 glass border border-brand-border rounded-xl p-4">
-              <div className="flex gap-1 mb-1.5">
-                {[...Array(5)].map((_, i) => (
-                  <span key={i} className="text-brand-yellow text-sm">★</span>
-                ))}
+            {/* Trust mini badge */}
+            <div className="mt-5 p-4 rounded-xl bg-white/5 border border-white/10">
+              <div className="flex gap-0.5 mb-1.5">
+                {[...Array(5)].map((_, i) => <span key={i} className="text-amber-400 text-sm">★</span>)}
               </div>
-              <p className="font-body font-500 text-sm text-brand-white">
-                5.0 — Highly Rated in Winnipeg
+              <p className="font-semibold text-sm text-white" style={{ fontFamily: "var(--font-plus-jakarta)" }}>
+                Highly Rated in Winnipeg
               </p>
-              <p className="font-body text-xs text-brand-muted mt-0.5">
-                200+ satisfied customers
-              </p>
+              <p className="text-xs text-slate-400 mt-0.5">200+ satisfied customers</p>
             </div>
           </motion.div>
         </div>
+      </div>
 
-        {/* Divider */}
-        <div className="divider" aria-hidden="true" />
-
-        {/* Bottom bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.4 }}
-          className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4"
-        >
-          <p className="font-body text-xs text-brand-muted text-center sm:text-left">
-            © {year} RiseClear Property Services. All rights reserved.
-            Winnipeg, Manitoba, Canada.
-          </p>
-          <div className="flex items-center gap-5">
-            <button
-              onClick={() => scrollTo("#home")}
-              className="font-body text-xs text-brand-muted hover:text-brand-white transition-colors duration-200 cursor-pointer"
-            >
-              Privacy Policy
-            </button>
-            <button
-              onClick={() => scrollTo("#home")}
-              className="font-body text-xs text-brand-muted hover:text-brand-white transition-colors duration-200 cursor-pointer"
-            >
-              Terms of Service
-            </button>
-            <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="w-8 h-8 glass border border-brand-border rounded-lg flex items-center justify-center hover:border-brand-blue/40 transition-all duration-200 cursor-pointer"
-              aria-label="Back to top"
-            >
-              <span className="text-brand-muted text-xs">↑</span>
-            </button>
+      {/* Bottom bar */}
+      <div className="border-t border-white/10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-5">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-xs text-slate-500 text-center sm:text-left" style={{ fontFamily: "var(--font-inter)" }}>
+              © {year} RiseClear Property Services. All rights reserved. Winnipeg, Manitoba, Canada.
+            </p>
+            <div className="flex items-center gap-4">
+              <button
+                onClick={() => scrollTo("#home")}
+                className="text-xs text-slate-500 hover:text-slate-300 transition-colors cursor-pointer"
+                style={{ fontFamily: "var(--font-inter)" }}
+              >
+                Privacy Policy
+              </button>
+              <button
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="w-8 h-8 rounded-lg bg-white/10 hover:bg-brand-blue flex items-center justify-center transition-all duration-200 cursor-pointer"
+                aria-label="Back to top"
+              >
+                <span className="text-white text-sm leading-none">↑</span>
+              </button>
+            </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </footer>
   );

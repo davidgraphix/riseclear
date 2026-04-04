@@ -7,30 +7,12 @@ import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 
 const benefits = [
-  {
-    title: "No Hidden Fees, Ever",
-    desc: "The price we quote is the price you pay. Transparent, upfront pricing with no surprise charges.",
-  },
-  {
-    title: "Eco-Friendly Products",
-    desc: "Safe for your family, pets, and the environment. We use biodegradable, non-toxic cleaning solutions.",
-  },
-  {
-    title: "Trained & Vetted Professionals",
-    desc: "Every team member is background-checked, trained, and covered by our liability insurance.",
-  },
-  {
-    title: "Flexible Scheduling",
-    desc: "Early mornings, evenings, or weekends — we work around your schedule, not the other way around.",
-  },
-  {
-    title: "Photo Documentation",
-    desc: "We take before and after photos so you can see exactly the transformation we deliver.",
-  },
-  {
-    title: "Re-clean Guarantee",
-    desc: "Not satisfied? We'll come back within 24 hours and re-clean at no additional cost.",
-  },
+  { title: "No Hidden Fees, Ever", desc: "The price we quote is the price you pay — transparent and upfront." },
+  { title: "Eco-Friendly Products", desc: "Safe for your family, pets, and the environment. Biodegradable solutions." },
+  { title: "Trained & Vetted Team", desc: "Background-checked, insured professionals on every single job." },
+  { title: "Flexible Scheduling", desc: "Early mornings, evenings, weekends — we work around your life." },
+  { title: "Photo Documentation", desc: "Before & after photos so you see the transformation we deliver." },
+  { title: "Re-Clean Guarantee", desc: "Not satisfied? We return within 24 hours at absolutely no extra cost." },
 ];
 
 export default function Benefits() {
@@ -39,67 +21,112 @@ export default function Benefits() {
   const imgRef = useRef(null);
   const imgInView = useInView(imgRef, { once: true, margin: "-80px" });
 
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
-    <section id="benefits" className="relative section-pad overflow-hidden" aria-label="Benefits of choosing RiseClear">
-      <div className="absolute inset-0 bg-gradient-to-b from-brand-dark via-brand-surface/20 to-brand-dark pointer-events-none" />
-
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+    <section
+      id="benefits"
+      className="relative section-pad bg-white"
+      aria-label="What makes RiseClear different"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 lg:gap-20 items-center">
-          {/* Left: Content */}
-          <div ref={ref}>
+
+          {/* ── Left: Image ── */}
+          <motion.div
+            ref={imgRef}
+            initial={{ opacity: 0, x: -36, scale: 0.97 }}
+            animate={imgInView ? { opacity: 1, x: 0, scale: 1 } : {}}
+            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            className="relative order-2 lg:order-1"
+          >
+            <div className="relative rounded-2xl overflow-hidden shadow-[0_20px_64px_rgba(37,99,235,0.10),0_8px_20px_rgba(15,23,42,0.06)]">
+              <Image
+                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=85&auto=format&fit=crop"
+                alt="Professional cleaner delivering high-quality results for a Winnipeg home"
+                width={640}
+                height={760}
+                className="w-full object-cover aspect-[4/5]"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/30 via-transparent to-transparent" />
+            </div>
+
+            {/* Floating badge: satisfaction */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-brand-border bg-brand-surface/60 mb-6"
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -bottom-5 -right-4 sm:-right-8 bg-white rounded-2xl shadow-card px-5 py-4 border border-brand-border"
+              aria-hidden="true"
             >
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse-slow" />
-              <span className="text-xs text-brand-muted uppercase tracking-widest font-body">
-                Our Promise
-              </span>
+              <p className="text-2xl font-black text-brand-blue" style={{ fontFamily: "var(--font-plus-jakarta)" }}>100%</p>
+              <p className="text-sm font-medium text-brand-body mt-0.5">Satisfaction</p>
+              <p className="text-sm font-medium text-brand-body">Guaranteed</p>
             </motion.div>
 
+            {/* Floating badge: rating */}
+            <motion.div
+              animate={{ y: [0, 7, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+              className="absolute -top-4 -left-4 sm:-left-6 bg-brand-blue rounded-2xl shadow-blue px-4 py-3.5"
+              aria-hidden="true"
+            >
+              <p className="text-white font-bold text-sm" style={{ fontFamily: "var(--font-plus-jakarta)" }}>5.0 ★ Rating</p>
+              <p className="text-blue-200 text-xs mt-0.5">200+ Reviews</p>
+            </motion.div>
+          </motion.div>
+
+          {/* ── Right: Content ── */}
+          <div ref={ref} className="order-1 lg:order-2">
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              className="section-label"
+            >
+              Our Promise
+            </motion.p>
+
             <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.08 }}
-              className="font-display font-800 text-3xl sm:text-4xl lg:text-5xl text-brand-white tracking-tight mb-5 leading-[1.1]"
+              className="text-3xl sm:text-4xl lg:text-[2.5rem] font-bold text-brand-ink tracking-tight leading-[1.1] mb-5"
+              style={{ fontFamily: "var(--font-plus-jakarta)" }}
             >
-              Quality You Can
-              <br />
+              Quality You Can{" "}
               <span className="gradient-text">See & Feel</span>
             </motion.h2>
 
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.14 }}
-              className="font-body font-300 text-brand-light text-base leading-relaxed mb-8 max-w-lg"
+              className="text-brand-body text-[0.9375rem] leading-relaxed mb-8 max-w-lg"
+              style={{ fontFamily: "var(--font-inter)" }}
             >
               We built RiseClear on one simple idea: do the job right, treat
               clients with respect, and never cut corners. Here&apos;s what sets
               us apart from every other cleaning company in Winnipeg.
             </motion.p>
 
-            <div className="space-y-4">
-              {benefits.map((benefit, i) => (
+            <div className="space-y-4 mb-10">
+              {benefits.map((b, i) => (
                 <motion.div
-                  key={benefit.title}
-                  initial={{ opacity: 0, x: -20 }}
+                  key={b.title}
+                  initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ delay: i * 0.08 + 0.2, duration: 0.5 }}
-                  className="flex items-start gap-4 group"
+                  className="flex items-start gap-3.5 group"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-brand-blue flex-shrink-0 mt-0.5 group-hover:scale-110 transition-transform duration-200" />
+                  <div className="w-6 h-6 rounded-full bg-brand-blue-light flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-brand-blue group-hover:scale-110 transition-all duration-200">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-brand-blue group-hover:text-white transition-colors duration-200" strokeWidth={2.5} />
+                  </div>
                   <div>
-                    <p className="font-body font-600 text-[14px] text-brand-white mb-0.5">
-                      {benefit.title}
+                    <p className="font-semibold text-[0.875rem] text-brand-ink mb-0.5"
+                       style={{ fontFamily: "var(--font-plus-jakarta)" }}>
+                      {b.title}
                     </p>
-                    <p className="font-body font-300 text-sm text-brand-light leading-relaxed">
-                      {benefit.desc}
+                    <p className="text-sm text-brand-muted leading-relaxed"
+                       style={{ fontFamily: "var(--font-inter)" }}>
+                      {b.desc}
                     </p>
                   </div>
                 </motion.div>
@@ -107,75 +134,27 @@ export default function Benefits() {
             </div>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.7 }}
-              className="mt-10 flex flex-col sm:flex-row gap-3"
+              className="flex flex-col sm:flex-row gap-3"
             >
               <a
                 href="tel:+14318164106"
-                className="flex items-center justify-center gap-2 bg-brand-blue hover:bg-brand-blue-bright text-white font-body font-600 text-sm px-7 py-3.5 rounded-xl transition-all duration-300 hover:shadow-glow"
-                aria-label="Call to experience the RiseClear difference"
+                className="btn-primary"
+                aria-label="Call RiseClear"
               >
                 Experience the Difference
               </a>
               <button
-                onClick={scrollToContact}
-                className="flex items-center justify-center gap-2 glass border border-brand-border hover:border-brand-blue/30 text-brand-white font-body font-500 text-sm px-7 py-3.5 rounded-xl transition-all duration-300 cursor-pointer"
-                aria-label="Request a quote"
+                onClick={() => document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" })}
+                className="btn-secondary"
+                aria-label="Get a free quote"
               >
                 Get a Free Quote
               </button>
             </motion.div>
           </div>
-
-          {/* Right: Image */}
-          <motion.div
-            ref={imgRef}
-            initial={{ opacity: 0, scale: 0.95, x: 40 }}
-            animate={imgInView ? { opacity: 1, scale: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="relative"
-          >
-            <div className="relative aspect-[4/5] rounded-3xl overflow-hidden">
-              <Image
-                src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&q=80&auto=format&fit=crop"
-                alt="Professional cleaner providing premium window cleaning service"
-                fill
-                className="object-cover object-center"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/70 via-transparent to-transparent" />
-            </div>
-
-            {/* Floating badge */}
-            <motion.div
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-4 -left-4 sm:-left-8 glass-blue border border-brand-blue/30 rounded-2xl p-4 shadow-card"
-            >
-              <p className="font-display font-800 text-2xl gradient-text">100%</p>
-              <p className="font-body text-xs text-brand-light mt-0.5">Satisfaction</p>
-              <p className="font-body text-xs text-brand-light">Guaranteed</p>
-            </motion.div>
-
-            {/* Floating badge 2 */}
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -top-4 -right-4 sm:-right-6 glass border border-brand-border rounded-2xl p-4 shadow-card"
-            >
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-brand-yellow/20 rounded-lg flex items-center justify-center">
-                  <span className="text-brand-yellow text-sm">★</span>
-                </div>
-                <div>
-                  <p className="font-display font-700 text-sm text-brand-white">5.0 Stars</p>
-                  <p className="font-body text-[10px] text-brand-muted">200+ Reviews</p>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
         </div>
       </div>
     </section>
