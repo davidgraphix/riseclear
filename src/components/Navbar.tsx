@@ -36,11 +36,10 @@ export default function Navbar() {
         initial={{ y: -70, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-400 ${scrolled
             ? "py-3 bg-white/95 backdrop-blur-md shadow-nav border-b border-brand-border"
             : "py-4 bg-white/80 backdrop-blur-sm"
-        }`}
+          }`}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="flex items-center justify-between">
@@ -48,19 +47,14 @@ export default function Navbar() {
             {/* ── Logo ── */}
             <Link href="/" className="flex items-center gap-3 group" aria-label="RiseClear Property Services Home">
               {/* Icon mark */}
-              <div className="relative flex-shrink-0 w-10 h-10" aria-hidden="true">
-                {/* Outer ring */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-brand-blue to-brand-blue-dark shadow-[0_2px_12px_rgba(37,99,235,0.35)] group-hover:shadow-[0_4px_20px_rgba(37,99,235,0.5)] transition-shadow duration-300" />
+              <div className="relative flex-shrink-0 w-12 h-12" aria-hidden="true">
                 {/* Inner icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  {/* Custom RC lettermark */}
-                  <svg width="22" height="18" viewBox="0 0 22 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M2 2h6a4 4 0 0 1 0 8H2V2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M8 10l4 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M20 4.5A5.5 5.5 0 0 0 14.5 2" stroke="rgba(255,255,255,0.6)" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M20 13.5A5.5 5.5 0 0 1 14.5 16" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M14.5 16H13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
+                  <img
+                    src="/riseclear-logo.png"
+                    alt="RiseClear logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
 
@@ -81,7 +75,7 @@ export default function Navbar() {
                   </span>
                 </div>
                 <p className="text-[9.5px] text-brand-muted tracking-[0.12em] uppercase mt-0.5 font-medium"
-                   style={{ fontFamily: "var(--font-inter)" }}>
+                  style={{ fontFamily: "var(--font-inter)" }}>
                   Property Services
                 </p>
               </div>

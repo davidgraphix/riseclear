@@ -51,15 +51,14 @@ export default function Footer() {
           >
             {/* Logo */}
             <Link href="/" className="flex items-center gap-3 group mb-5 w-fit" aria-label="RiseClear">
-              <div className="relative w-10 h-10 flex-shrink-0">
-                <div className="absolute inset-0 bg-brand-blue rounded-xl" />
+             <div className="relative flex-shrink-0 w-12 h-12" aria-hidden="true">
+                {/* Inner icon */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <svg width="22" height="18" viewBox="0 0 22 18" fill="none">
-                    <path d="M2 2h6a4 4 0 0 1 0 8H2V2Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    <path d="M8 10l4 6" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M20 4.5A5.5 5.5 0 0 0 14.5 2" stroke="rgba(255,255,255,0.5)" strokeWidth="2" strokeLinecap="round"/>
-                    <path d="M20 13.5A5.5 5.5 0 0 1 14.5 16H13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
-                  </svg>
+                  <img
+                    src="/riseclear-logo.png"
+                    alt="RiseClear logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
               <div>

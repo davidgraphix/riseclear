@@ -25,7 +25,7 @@ const cleaningServices: Service[] = [
     title: "Window Cleaning",
     shortDesc: "Streak-free, crystal-clear windows — inside and out — for homes and businesses across Winnipeg.",
     features: ["Residential & commercial", "Interior & exterior", "High-reach capability", "Eco-friendly solutions"],
-    image: "https://images.unsplash.com/photo-1527515637462-cff94ece8e7f?w=700&q=80&auto=format&fit=crop",
+    image: "/professional-window-cleaning-technician.png",
     imageAlt: "Professional window cleaning technician cleaning windows on a building",
     featured: true,
     tag: "Most Popular",
@@ -59,7 +59,7 @@ const cleaningServices: Service[] = [
     title: "Pressure Washing",
     shortDesc: "Restore driveways, decks, siding, and patios to like-new condition with high-pressure washing.",
     features: ["Driveways & walkways", "Decks & patios", "Siding & fences", "Oil stain removal"],
-    image: "https://images.unsplash.com/photo-1558618047-f4e60cabb3d8?w=700&q=80&auto=format&fit=crop",
+    image: "/pressure-washing-service.png",
     imageAlt: "Pressure washing service cleaning a residential driveway",
   },
   {

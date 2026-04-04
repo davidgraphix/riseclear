@@ -162,7 +162,7 @@ export default function Hero() {
             {/* Main image */}
             <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_80px_rgba(37,99,235,0.14),0_8px_24px_rgba(15,23,42,0.08)]">
               <Image
-                src="https://images.unsplash.com/photo-1527515637462-cff94ece8e7f?w=900&q=85&auto=format&fit=crop"
+                src="/Window-cleaning-technician.png"
                 alt="Professional window cleaning technician working on a building in Winnipeg"
                 width={700}
                 height={560}
