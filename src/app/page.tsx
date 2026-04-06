@@ -12,7 +12,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 export default function Home() {
   return (
-    <main className="relative bg-brand-dark overflow-x-hidden">
+    <main className="relative bg-white overflow-x-hidden">
       <Navbar />
       <Hero />
       <Trust />

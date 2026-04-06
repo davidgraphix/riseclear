@@ -1,21 +1,19 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Phone, MessageCircle, Star, CheckCircle, ArrowRight } from "lucide-react";
+import { Phone, MessageCircle, Star, CheckCircle2, ArrowRight, ChevronDown } from "lucide-react";
 import Image from "next/image";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: (i: number) => ({
-    opacity: 1, y: 0,
-    transition: { delay: i * 0.11, duration: 0.65, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
 
 const trust = [
   "Fully insured & bonded",
-  "Same-day service available",
   "Streak-free guarantee",
+  "Same-day service available",
+];
+
+const stats = [
+  { value: "200+", label: "Happy Clients" },
+  { value: "5.0★", label: "Avg. Rating" },
+  { value: "3+", label: "Years Serving Winnipeg" },
 ];
 
 export default function Hero() {
@@ -25,191 +23,259 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-white"
-      aria-label="RiseClear Property Services — Winnipeg Window Cleaning"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+      aria-label="RiseClear Property Services — Winnipeg's window cleaning experts"
     >
-      {/* Subtle blue gradient background */}
+      {/* ── Sky-blue background ── */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(150deg, #0369A1 0%, #0EA5E9 45%, #38BDF8 100%)" }}
+        aria-hidden="true"
+      />
+
+      {/* Grid overlay */}
+      <div
+        className="absolute inset-0 bg-grid-sky bg-grid opacity-[0.08] pointer-events-none"
+        aria-hidden="true"
+      />
+
+      {/* Soft radial light */}
       <div
         className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(ellipse 70% 60% at 60% 40%, #EFF6FF 0%, #FFFFFF 65%)",
-        }}
-        aria-hidden="true"
-      />
-      {/* Grid texture */}
-      <div
-        className="absolute inset-0 bg-grid-light bg-grid opacity-60 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 60% 50% at 65% 40%, rgba(255,255,255,0.12) 0%, transparent 70%)" }}
         aria-hidden="true"
       />
 
-      <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-28 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* ── Content ── */}
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl pt-28 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
-          {/* ── Left: Copy ── */}
+          {/* Left: Copy */}
           <div>
             {/* Badge */}
             <motion.div
-              variants={fadeUp} initial="hidden" animate="visible" custom={0}
-              className="mb-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              className="mb-7"
             >
-              <span className="pill">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-blue animate-pulse-slow inline-block" />
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/15 border border-white/30 text-white text-[0.7rem] font-bold uppercase tracking-widest font-body">
+                <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse-slow" />
                 Winnipeg&apos;s Trusted Cleaning Experts
               </span>
             </motion.div>
 
-            {/* Headline */}
+            {/* H1 */}
             <motion.h1
-              variants={fadeUp} initial="hidden" animate="visible" custom={1}
-              className="text-4xl sm:text-5xl xl:text-[3.5rem] font-bold text-brand-ink leading-[1.08] tracking-tight mb-5"
-              style={{ fontFamily: "var(--font-plus-jakarta)" }}
+              initial={{ opacity: 0, y: 28 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              className="font-display text-[2.625rem] sm:text-5xl xl:text-[3.625rem] font-900 text-white leading-[1.05] tracking-tight mb-5"
             >
               Crystal-Clear{" "}
-              <span className="gradient-text">Windows</span>{" "}
+              <span
+                className="relative inline-block"
+                style={{
+                  background: "linear-gradient(135deg, #FFFFFF 0%, #BAE6FD 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                Windows
+              </span>
+              <br />
               for Your Home &amp; Business
             </motion.h1>
 
             {/* Subtext */}
             <motion.p
-              variants={fadeUp} initial="hidden" animate="visible" custom={2}
-              className="text-[1.0625rem] text-brand-body leading-relaxed max-w-lg mb-8"
-              style={{ fontFamily: "var(--font-inter)" }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.6 }}
+              className="font-body text-[1rem] text-sky-100 leading-relaxed max-w-lg mb-8"
             >
               Professional window cleaning, gutter care, pressure washing, deep
               cleaning, and permanent LED installation — serving{" "}
-              <strong className="text-brand-ink font-semibold">Winnipeg, Manitoba</strong>{" "}
-              with a satisfaction guarantee.
+              <strong className="text-white font-semibold">Winnipeg, Manitoba</strong>{" "}
+              with a 100% satisfaction guarantee.
             </motion.p>
 
             {/* Trust bullets */}
             <motion.ul
-              variants={fadeUp} initial="hidden" animate="visible" custom={3}
-              className="flex flex-col gap-2 mb-9"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.26 }}
+              className="flex flex-col gap-2.5 mb-9"
               aria-label="Key trust points"
             >
               {trust.map((t) => (
-                <li key={t} className="flex items-center gap-2.5 text-[0.9375rem] text-brand-body">
-                  <CheckCircle className="w-4.5 h-4.5 text-brand-blue flex-shrink-0 w-5 h-5" strokeWidth={2} />
+                <li key={t} className="flex items-center gap-2.5 text-[0.9375rem] text-sky-50 font-body">
+                  <CheckCircle2 className="w-5 h-5 text-white/80 flex-shrink-0" strokeWidth={2} />
                   {t}
                 </li>
               ))}
             </motion.ul>
 
-            {/* CTA buttons */}
+            {/* CTA row */}
             <motion.div
-              variants={fadeUp} initial="hidden" animate="visible" custom={4}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.34 }}
               className="flex flex-col sm:flex-row gap-3 mb-10"
             >
               <a
                 href="tel:+14318164106"
-                className="btn-primary text-base px-7 py-4"
-                aria-label="Call RiseClear Property Services"
+                className="btn-white text-[0.9375rem] px-7 py-4"
+                aria-label="Call for a free quote"
               >
-                <Phone className="w-4.5 h-4.5 w-5 h-5" />
+                <Phone className="w-5 h-5" />
                 Call for a Free Quote
               </a>
               <button
                 onClick={() => scrollTo("#contact")}
-                className="btn-secondary text-base px-7 py-4"
-                aria-label="Request an online quote"
+                className="btn-white-outline text-[0.9375rem] px-7 py-4"
+                aria-label="Request quote online"
               >
                 Request Online Quote
                 <ArrowRight className="w-4 h-4" />
               </button>
             </motion.div>
 
-            {/* Social proof row */}
+            {/* WhatsApp + stars */}
             <motion.div
-              variants={fadeUp} initial="hidden" animate="visible" custom={5}
-              className="flex items-center gap-5 flex-wrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.44 }}
+              className="flex items-center flex-wrap gap-5"
             >
-              {/* Stars */}
               <div className="flex items-center gap-2">
-                <div className="flex gap-0.5">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                  ))}
-                </div>
-                <span className="text-sm font-semibold text-brand-ink">5.0</span>
-                <span className="text-sm text-brand-muted">· 200+ reviews</span>
+                {[...Array(5)].map((_, i) => (
+                  <Star key={i} className="w-4 h-4 fill-amber-300 text-amber-300" />
+                ))}
+                <span className="text-sm font-semibold text-white font-body ml-1">5.0</span>
+                <span className="text-sm text-sky-200 font-body">· 200+ reviews</span>
               </div>
-
-              <div className="w-px h-5 bg-brand-border hidden sm:block" aria-hidden="true" />
-
+              <div className="w-px h-4 bg-white/25 hidden sm:block" aria-hidden="true" />
               <a
                 href="https://wa.me/14318164106?text=Hello%2C%20I%27m%20interested%20in%20your%20cleaning%20services"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-sm font-medium text-brand-body hover:text-[#25D366] transition-colors duration-200"
-                aria-label="WhatsApp RiseClear"
+                className="flex items-center gap-2 text-sm font-medium text-sky-100 hover:text-white transition-colors font-body"
+                aria-label="WhatsApp us"
               >
-                <div className="w-7 h-7 rounded-full bg-[#25D366]/10 flex items-center justify-center">
-                  <MessageCircle className="w-3.5 h-3.5 text-[#25D366]" />
+                <div className="w-7 h-7 rounded-full bg-[#25D366]/25 flex items-center justify-center border border-[#25D366]/40">
+                  <MessageCircle className="w-3.5 h-3.5 text-[#4ADE80]" />
                 </div>
                 WhatsApp Us
               </a>
             </motion.div>
           </div>
 
-          {/* ── Right: Hero image ── */}
+          {/* Right: Image + stat cards */}
           <motion.div
-            initial={{ opacity: 0, x: 40, scale: 0.97 }}
+            initial={{ opacity: 0, x: 36, scale: 0.97 }}
             animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.25, ease: [0.22, 1, 0.36, 1] }}
-            className="relative hidden lg:block"
+            transition={{ delay: 0.22, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative hidden lg:flex items-center justify-center"
           >
-            {/* Main image */}
-            <div className="relative rounded-2xl overflow-hidden shadow-[0_24px_80px_rgba(37,99,235,0.14),0_8px_24px_rgba(15,23,42,0.08)]">
-              <Image
-                src="/Window-cleaning-technician.png"
-                alt="Professional window cleaning technician working on a building in Winnipeg"
-                width={700}
-                height={560}
-                className="w-full object-cover aspect-[5/4]"
-                priority
-                sizes="(max-width: 1280px) 50vw, 600px"
-              />
-              {/* Light gradient overlay at bottom */}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/30 via-transparent to-transparent" />
+            {/* Main photo */}
+            <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.28)] border border-white/20">
+              <div className="relative aspect-[5/4]">
+                <Image
+                  src="/images/hero-bg.jpg"
+                  alt="RiseClear technician performing professional window cleaning in Winnipeg"
+                  fill
+                  priority
+                  className="object-cover"
+                  sizes="(max-width: 1280px) 50vw, 640px"
+                  onError={(e) => {
+                    const t = e.target as HTMLImageElement;
+                    t.style.display = "none";
+                  }}
+                />
+                {/* Placeholder when no image */}
+                <div className="absolute inset-0 img-placeholder flex-col gap-3">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="1.5" aria-hidden="true">
+                    <rect x="3" y="3" width="8" height="8" rx="1"/>
+                    <rect x="13" y="3" width="8" height="8" rx="1"/>
+                    <rect x="3" y="13" width="8" height="8" rx="1"/>
+                    <rect x="13" y="13" width="8" height="8" rx="1"/>
+                  </svg>
+                  <p className="text-sky-400 text-sm font-body">Add hero-bg.jpg to /public/images/</p>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-sky-900/40 via-transparent to-transparent" />
+              </div>
             </div>
 
-            {/* Floating badge: rating */}
+            {/* Floating: 5-star card */}
             <motion.div
-              animate={{ y: [0, -7, 0] }}
+              animate={{ y: [0, -8, 0] }}
               transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -left-8 top-10 bg-white rounded-2xl shadow-card px-4 py-3.5 flex items-center gap-3"
+              className="absolute -left-8 top-8 bg-white rounded-2xl shadow-float px-4 py-3.5 flex items-center gap-3 border border-sky-100"
               aria-hidden="true"
             >
-              <div className="w-10 h-10 rounded-xl bg-brand-blue-light flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center flex-shrink-0">
                 <Star className="w-5 h-5 fill-amber-400 text-amber-400" />
               </div>
               <div>
-                <p className="font-bold text-brand-ink text-sm leading-tight" style={{ fontFamily: "var(--font-plus-jakarta)" }}>5.0 Rating</p>
-                <p className="text-xs text-brand-muted">200+ clients</p>
+                <p className="font-display font-bold text-brand-ink text-sm leading-tight">5.0 Rating</p>
+                <p className="font-body text-xs text-brand-muted">200+ clients</p>
               </div>
             </motion.div>
 
-            {/* Floating badge: guarantee */}
+            {/* Floating: guarantee */}
             <motion.div
-              animate={{ y: [0, 7, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              className="absolute -right-6 bottom-12 bg-brand-blue rounded-2xl shadow-blue px-4 py-3.5"
+              animate={{ y: [0, 9, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
+              className="absolute -right-6 bottom-10 bg-sky-600 rounded-2xl shadow-sky-lg px-5 py-4 border border-sky-500"
               aria-hidden="true"
             >
-              <p className="font-bold text-white text-sm" style={{ fontFamily: "var(--font-plus-jakarta)" }}>100% Streak-Free</p>
-              <p className="text-xs text-blue-200 mt-0.5">Guaranteed</p>
+              <p className="font-display font-bold text-white text-sm">100% Streak-Free</p>
+              <p className="font-body text-sky-200 text-xs mt-0.5">Satisfaction Guaranteed</p>
             </motion.div>
           </motion.div>
         </div>
+
+        {/* ── Stats bar ── */}
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.55, duration: 0.6 }}
+          className="mt-16 grid grid-cols-3 gap-px bg-white/20 rounded-2xl overflow-hidden border border-white/20 backdrop-blur-sm"
+        >
+          {stats.map((s) => (
+            <div key={s.label} className="bg-white/10 px-4 sm:px-8 py-5 text-center">
+              <p className="font-display font-900 text-2xl sm:text-3xl text-white">{s.value}</p>
+              <p className="font-body text-sky-200 text-xs sm:text-sm mt-1">{s.label}</p>
+            </div>
+          ))}
+        </motion.div>
       </div>
 
-      {/* Bottom wave transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none" aria-hidden="true">
-        <svg viewBox="0 0 1440 80" preserveAspectRatio="none" className="w-full h-full">
-          <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#F8FAFC" />
+      {/* ── Wave transition ── */}
+      <div className="absolute bottom-0 left-0 right-0 pointer-events-none" aria-hidden="true">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="w-full h-16 sm:h-20 md:h-24">
+          <path d="M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,100 L0,100 Z" fill="#F0F9FF" />
         </svg>
       </div>
+
+      {/* ── Scroll cue ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4 }}
+        className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5"
+        aria-hidden="true"
+      >
+        <span className="font-body text-[10px] text-white/50 uppercase tracking-widest">Scroll</span>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-4 h-4 text-white/40" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

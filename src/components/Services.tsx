@@ -2,100 +2,145 @@
 
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import { Sparkles, Lightbulb, ArrowRight, CheckCircle } from "lucide-react";
+import Link from "next/link";
+import {
+  Sparkles, Lightbulb, ArrowRight, CheckCircle2,
+  Wind, Home, Layers, Droplets, MoveHorizontal,
+} from "lucide-react";
 
-/* ── DATA ───────────────────────────────────────────────── */
-
+/* ── Types ────────────────────────────────────────────── */
 interface Service {
   id: string;
   title: string;
+  slug?: string;             // if set, card links to /services/[slug]
   shortDesc: string;
   features: string[];
-  image: string;
-  imageAlt: string;
-  featured?: boolean;
+  img: string;
+  imgAlt: string;
   tag?: string;
+  icon: React.ElementType;
 }
 
-const cleaningServices: Service[] = [
+/* ── Cleaning services data ───────────────────────────── */
+const cleaning: Service[] = [
   {
     id: "window-cleaning",
+    slug: "window-cleaning",
     title: "Window Cleaning",
-    shortDesc: "Streak-free, crystal-clear windows — inside and out — for homes and businesses across Winnipeg.",
-    features: ["Residential & commercial", "Interior & exterior", "High-reach capability", "Eco-friendly solutions"],
-    image: "/professional-window-cleaning-technician.png",
-    imageAlt: "Professional window cleaning technician cleaning windows on a building",
-    featured: true,
+    shortDesc: "Streak-free, crystal-clear windows for homes and businesses across Winnipeg — inside and out.",
+    features: [
+      "Residential & commercial",
+      "Interior & exterior options",
+      "High-reach capability",
+      "Track & screen add-ons",
+      "Eco-friendly solutions",
+      "100% streak-free guarantee",
+    ],
+    img: "/images/window-cleaning.jpg",
+    imgAlt: "Professional window cleaning technician on a Winnipeg home",
     tag: "Most Popular",
+    icon: Layers,
   },
   {
     id: "gutter-cleaning",
     title: "Gutter Cleaning",
-    shortDesc: "Clear gutters and downspouts of debris to prevent water damage and foundation issues.",
-    features: ["Debris removal", "Flush & flow check", "Downspout clearing", "Damage inspection"],
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&q=80&auto=format&fit=crop",
-    imageAlt: "Gutter cleaning service removing leaves and debris from home gutters",
+    shortDesc: "Clear gutters and downspouts of debris to prevent water damage and protect your foundation.",
+    features: ["Full debris removal", "Flush & flow test", "Downspout clearing", "Damage inspection"],
+    img: "/images/gutter-cleaning.jpg",
+    imgAlt: "Gutter cleaning service on a residential property",
+    icon: Droplets,
   },
   {
     id: "home-cleaning",
     title: "Home Cleaning",
-    shortDesc: "Regular or one-time professional cleaning for every room in your home.",
-    features: ["Full home coverage", "Flexible scheduling", "Recurring plans", "Pet-friendly products"],
-    image: "https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=700&q=80&auto=format&fit=crop",
-    imageAlt: "Professional cleaner cleaning a modern home interior",
+    shortDesc: "Regular or one-time professional cleaning for every room — tailored to your schedule and needs.",
+    features: ["All rooms covered", "Flexible schedule", "Recurring plans", "Pet-friendly products"],
+    img: "/images/home-cleaning.jpg",
+    imgAlt: "Professional home cleaning service in Winnipeg",
+    icon: Home,
   },
   {
     id: "deep-cleaning",
     title: "Deep Cleaning",
     shortDesc: "Intensive top-to-bottom cleaning reaching every corner, surface, and hard-to-reach area.",
     features: ["Appliance interiors", "Baseboards & vents", "Behind furniture", "Full sanitization"],
-    image: "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=700&q=80&auto=format&fit=crop",
-    imageAlt: "Deep cleaning service with professional equipment and cleaning supplies",
+    img: "/images/deep-cleaning.jpg",
+    imgAlt: "Deep cleaning service with professional equipment",
+    icon: Sparkles,
   },
   {
     id: "pressure-washing",
     title: "Pressure Washing",
-    shortDesc: "Restore driveways, decks, siding, and patios to like-new condition with high-pressure washing.",
+    shortDesc: "Restore driveways, decks, siding and patios to like-new condition with professional pressure washing.",
     features: ["Driveways & walkways", "Decks & patios", "Siding & fences", "Oil stain removal"],
-    image: "/pressure-washing-service.png",
-    imageAlt: "Pressure washing service cleaning a residential driveway",
+    img: "/images/pressure-washing.jpg",
+    imgAlt: "Pressure washing a residential driveway in Winnipeg",
+    icon: Wind,
   },
   {
     id: "move-cleaning",
     title: "Move-In / Move-Out",
-    shortDesc: "Thorough cleaning that meets landlord and real estate standards for a smooth transition.",
+    shortDesc: "Thorough cleaning that meets landlord and real estate standards for a smooth, stress-free transition.",
     features: ["Deposit-ready results", "All surfaces cleaned", "Appliances included", "Same-day available"],
-    image: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=700&q=80&auto=format&fit=crop",
-    imageAlt: "Move-out cleaning service preparing a home for new tenants",
+    img: "/images/move-cleaning.jpg",
+    imgAlt: "Move-out cleaning service for Winnipeg properties",
     tag: "Popular",
+    icon: MoveHorizontal,
   },
 ];
 
-const ledServices: Service[] = [
-  {
-    id: "led-installation",
-    title: "Permanent LED Light Installation",
-    shortDesc: "Professionally installed permanent outdoor LED lighting that transforms your home's exterior — all year round.",
-    features: [
-      "App-controlled colors & brightness",
-      "Holiday & seasonal programs",
-      "Weatherproof & durable (10+ year lifespan)",
-      "No ladder required after install",
-      "Energy-efficient LED technology",
-      "Custom layouts for any home",
-    ],
-    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=900&q=80&auto=format&fit=crop",
-    imageAlt: "Permanent LED light installation on a residential home exterior",
-    featured: true,
-    tag: "Premium Service",
-  },
-];
+/* ── LED data ─────────────────────────────────────────── */
+const led: Service = {
+  id: "led-installation",
+  title: "Permanent LED Light Installation",
+  shortDesc:
+    "Transform your home's curb appeal with professionally-installed permanent outdoor LED lighting — vivid, weatherproof, and built to last 10+ years.",
+  features: [
+    "App-controlled colours & brightness",
+    "Holiday & seasonal programs",
+    "Weatherproof — lasts 10+ years",
+    "No ladder needed after install",
+    "Energy-efficient technology",
+    "Custom layout for any home size",
+  ],
+  img: "/images/led-installation.jpg",
+  imgAlt: "Permanent LED light installation on a Winnipeg home exterior",
+  tag: "Premium Service",
+  icon: Lightbulb,
+};
 
-/* ── Sub-components ─────────────────────────────────────── */
+/* ── Local image with fallback ─────────────────────────── */
+function ServiceImage({ src, alt, fill = true, className = "" }: {
+  src: string; alt: string; fill?: boolean; className?: string;
+}) {
+  return (
+    <div className={`relative ${fill ? "absolute inset-0" : "w-full h-full"}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill={fill}
+        className={`object-cover ${className}`}
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
+        onError={(e) => {
+          const wrapper = (e.target as HTMLImageElement).parentElement;
+          if (wrapper) {
+            wrapper.classList.add("img-placeholder");
+            (e.target as HTMLImageElement).style.display = "none";
+          }
+        }}
+      />
+    </div>
+  );
+}
 
-function FeaturedCard({ service, onQuote }: { service: Service; onQuote: () => void }) {
+/* ── Featured hero card (window cleaning + LED) ──────── */
+function FeaturedCard({ service, onQuote, linkTo }: {
+  service: Service;
+  onQuote: () => void;
+  linkTo?: string;
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
 
@@ -105,112 +150,101 @@ function FeaturedCard({ service, onQuote }: { service: Service; onQuote: () => v
       initial={{ opacity: 0, y: 32 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-      className="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden border border-brand-border shadow-card mb-5 bg-white"
+      className="grid grid-cols-1 lg:grid-cols-2 rounded-2xl overflow-hidden border border-sky-200 shadow-[0_8px_40px_rgba(14,165,233,0.12)] mb-5 bg-white"
     >
-      {/* Image */}
-      <div className="relative h-64 lg:h-auto lg:min-h-[340px] order-first">
-        <Image
-          src={service.image}
-          alt={service.imageAlt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 1024px) 100vw, 50vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-brand-ink/10 to-transparent" />
+      {/* Image column */}
+      <div className="relative h-64 lg:h-auto lg:min-h-[380px]">
+        <ServiceImage src={service.img} alt={service.imgAlt} />
+        <div className="absolute inset-0 bg-gradient-to-r from-sky-900/20 to-transparent" />
         {service.tag && (
           <div className="absolute top-4 left-4">
-            <span className="bg-brand-blue text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded-full shadow-blue">
+            <span className="bg-sky-500 text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full shadow-sky">
               {service.tag}
             </span>
           </div>
         )}
       </div>
 
-      {/* Content */}
+      {/* Content column */}
       <div className="p-7 lg:p-10 flex flex-col justify-center">
-        <h3
-          className="text-2xl lg:text-3xl font-bold text-brand-ink mb-3 leading-tight"
-          style={{ fontFamily: "var(--font-plus-jakarta)" }}
-        >
+        <h3 className="font-display text-2xl lg:text-[1.875rem] font-bold text-brand-ink mb-3 leading-tight">
           {service.title}
         </h3>
-        <p
-          className="text-brand-body text-[0.9375rem] leading-relaxed mb-6"
-          style={{ fontFamily: "var(--font-inter)" }}
-        >
+        <p className="font-body text-[0.9375rem] text-brand-body leading-relaxed mb-6">
           {service.shortDesc}
         </p>
-        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 mb-8">
+        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-y-2.5 gap-x-4 mb-8">
           {service.features.map((f) => (
-            <li key={f} className="flex items-center gap-2 text-sm text-brand-body">
-              <CheckCircle className="w-4 h-4 text-brand-blue flex-shrink-0" strokeWidth={2} />
+            <li key={f} className="flex items-center gap-2 font-body text-sm text-brand-body">
+              <CheckCircle2 className="w-4 h-4 text-sky-500 flex-shrink-0" strokeWidth={2} />
               {f}
             </li>
           ))}
         </ul>
-        <button
-          onClick={onQuote}
-          className="btn-primary self-start"
-          aria-label={`Book ${service.title}`}
-        >
-          Book This Service
-          <ArrowRight className="w-4 h-4" />
-        </button>
+        <div className="flex flex-col sm:flex-row gap-3">
+          {linkTo ? (
+            <Link href={linkTo} className="btn-sky self-start">
+              View Service Details
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          ) : null}
+          <button
+            onClick={onQuote}
+            className={linkTo ? "btn-sky-outline self-start" : "btn-sky self-start"}
+            aria-label={`Book ${service.title}`}
+          >
+            Book This Service
+          </button>
+        </div>
       </div>
     </motion.div>
   );
 }
 
-function ServiceCard({ service, index, onQuote }: { service: Service; index: number; onQuote: () => void }) {
+/* ── Small grid card ──────────────────────────────────── */
+function ServiceCard({ service, index, onQuote }: {
+  service: Service; index: number; onQuote: () => void;
+}) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-50px" });
+  const Icon = service.icon;
 
   return (
     <motion.div
       ref={ref}
       initial={{ opacity: 0, y: 24 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.08, duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ delay: index * 0.08, duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className="card bg-white group overflow-hidden flex flex-col"
     >
       {/* Image */}
-      <div className="relative h-48 overflow-hidden">
-        <Image
-          src={service.image}
-          alt={service.imageAlt}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-brand-ink/40 via-transparent to-transparent" />
+      <div className="relative h-44 overflow-hidden bg-sky-50">
+        <ServiceImage src={service.img} alt={service.imgAlt} className="group-hover:scale-105 transition-transform duration-500" />
+        <div className="absolute inset-0 bg-gradient-to-t from-sky-900/40 via-transparent to-transparent" />
         {service.tag && (
-          <div className="absolute top-3 right-3">
-            <span className="bg-white/95 text-brand-blue text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-soft">
-              {service.tag}
-            </span>
-          </div>
+          <span className="absolute top-3 right-3 bg-white/95 text-sky-600 text-[9px] font-bold uppercase tracking-wide px-2.5 py-1 rounded-full shadow-soft">
+            {service.tag}
+          </span>
         )}
+        <div className="absolute bottom-3 left-3">
+          <div className="w-8 h-8 rounded-lg bg-sky-500/90 backdrop-blur-sm flex items-center justify-center">
+            <Icon className="w-4 h-4 text-white" strokeWidth={1.8} />
+          </div>
+        </div>
       </div>
 
       {/* Content */}
       <div className="p-5 flex flex-col flex-1">
-        <h3
-          className="font-semibold text-[1rem] text-brand-ink mb-2"
-          style={{ fontFamily: "var(--font-plus-jakarta)" }}
-        >
+        <h3 className="font-display font-semibold text-[0.9375rem] text-brand-ink mb-2 leading-snug">
           {service.title}
         </h3>
-        <p
-          className="text-sm text-brand-muted leading-relaxed mb-4 flex-1"
-          style={{ fontFamily: "var(--font-inter)" }}
-        >
+        <p className="font-body text-sm text-brand-muted leading-relaxed mb-4 flex-1">
           {service.shortDesc}
         </p>
         <button
           onClick={onQuote}
-          className="flex items-center gap-1.5 text-sm font-semibold text-brand-blue hover:text-brand-blue-dark transition-colors duration-200 group/btn cursor-pointer"
-          aria-label={`Learn more about ${service.title}`}
-          style={{ fontFamily: "var(--font-inter)" }}
+          className="flex items-center gap-1.5 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors group/btn cursor-pointer font-body"
+          aria-label={`Get a quote for ${service.title}`}
         >
           Get a Quote
           <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
@@ -220,88 +254,53 @@ function ServiceCard({ service, index, onQuote }: { service: Service; index: num
   );
 }
 
-/* ── Category block ─────────────────────────────────────── */
-
-function CategoryBlock({
+/* ── Category heading ─────────────────────────────────── */
+function CategoryHeading({
   icon: Icon,
-  label,
+  num,
   title,
   subtitle,
-  color,
-  featured,
-  rest,
-  onQuote,
-  delay,
+  iconBg,
+  inView,
 }: {
   icon: React.ElementType;
-  label: string;
+  num: string;
   title: string;
   subtitle: string;
-  color: string;
-  featured: Service;
-  rest: Service[];
-  onQuote: () => void;
-  delay: number;
+  iconBg: string;
+  inView: boolean;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
-
   return (
-    <div ref={ref} className="mb-20 last:mb-0">
-      {/* Category header */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay, duration: 0.5 }}
-        className="flex items-center gap-4 mb-8"
-      >
-        <div className={`w-10 h-10 rounded-xl ${color} flex items-center justify-center flex-shrink-0`}>
+    <motion.div
+      initial={{ opacity: 0, y: 18 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      className="mb-8"
+    >
+      <div className="flex items-center gap-4 mb-4">
+        <div className={`w-11 h-11 ${iconBg} rounded-xl flex items-center justify-center flex-shrink-0`}>
           <Icon className="w-5 h-5 text-white" strokeWidth={2} />
         </div>
-        <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-brand-muted mb-0.5"
-             style={{ fontFamily: "var(--font-inter)" }}>
-            {label}
-          </p>
-          <h3
-            className="text-xl sm:text-2xl font-bold text-brand-ink leading-tight"
-            style={{ fontFamily: "var(--font-plus-jakarta)" }}
-          >
-            {title}
-          </h3>
+        <div className="flex-1 min-w-0">
+          <p className="font-body text-[10px] font-bold uppercase tracking-widest text-brand-muted mb-0.5">{num}</p>
+          <h3 className="font-display text-xl sm:text-2xl font-bold text-brand-ink">{title}</h3>
         </div>
-        <div className="flex-1 h-px bg-brand-border hidden sm:block ml-4" aria-hidden="true" />
-      </motion.div>
-
-      <p
-        className="text-brand-body text-[0.9375rem] mb-7 max-w-xl"
-        style={{ fontFamily: "var(--font-inter)" }}
-      >
-        {subtitle}
-      </p>
-
-      {/* Featured card */}
-      <FeaturedCard service={featured} onQuote={onQuote} />
-
-      {/* Grid cards (rest) */}
-      {rest.length > 0 && (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {rest.map((s, i) => (
-            <ServiceCard key={s.id} service={s} index={i} onQuote={onQuote} />
-          ))}
-        </div>
-      )}
-    </div>
+        <div className="hidden sm:block flex-1 h-px bg-sky-200 ml-4" aria-hidden="true" />
+      </div>
+      <p className="font-body text-brand-body text-[0.9375rem] leading-relaxed max-w-lg">{subtitle}</p>
+    </motion.div>
   );
 }
 
-/* ── Main export ─────────────────────────────────────────── */
-
+/* ── Main export ──────────────────────────────────────── */
 export default function Services() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const headerRef = useRef(null);
+  const headerInView = useInView(headerRef, { once: true, margin: "-80px" });
+  const cleanRef = useRef(null);
+  const cleanInView = useInView(cleanRef, { once: true, margin: "-60px" });
+  const ledRef = useRef(null);
+  const ledInView = useInView(ledRef, { once: true, margin: "-60px" });
 
-  const scrollToContact = () =>
+  const goContact = () =>
     document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
 
   return (
@@ -311,80 +310,97 @@ export default function Services() {
       aria-label="RiseClear cleaning and LED installation services"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        {/* Section header */}
-        <div className="text-center mb-16" ref={ref}>
+
+        {/* ── Section header ── */}
+        <div className="text-center mb-16" ref={headerRef}>
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            className="section-label justify-center"
+            initial={{ opacity: 0, y: 14 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
+            className="section-label justify-center mb-4"
           >
             Our Services
           </motion.p>
           <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, y: 18 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.08 }}
-            className="text-3xl sm:text-4xl lg:text-[2.625rem] font-bold text-brand-ink tracking-tight mb-4"
-            style={{ fontFamily: "var(--font-plus-jakarta)" }}
+            className="font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold text-brand-ink tracking-tight mb-4"
           >
             Everything Your Property{" "}
             <span className="gradient-text">Needs</span>
           </motion.h2>
           <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            initial={{ opacity: 0, y: 14 }}
+            animate={headerInView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.14 }}
-            className="text-brand-body text-[1.0625rem] max-w-xl mx-auto"
-            style={{ fontFamily: "var(--font-inter)" }}
+            className="font-body text-brand-body text-[1.0625rem] max-w-xl mx-auto"
           >
-            From sparkling clean windows to stunning permanent lighting — we
-            handle every corner of your property with precision and care.
+            From sparkling windows to stunning permanent lighting — handled
+            with precision and care.
           </motion.p>
         </div>
 
-        {/* ── CATEGORY 1: Cleaning Services ── */}
-        <CategoryBlock
-          icon={Sparkles}
-          label="Category 1"
-          title="Cleaning Services"
-          subtitle="Professional cleaning solutions for residential and commercial properties across Winnipeg — done right, every time."
-          color="bg-brand-blue"
-          featured={cleaningServices[0]}
-          rest={cleaningServices.slice(1)}
-          onQuote={scrollToContact}
-          delay={0.1}
-        />
+        {/* ══ CATEGORY 1: CLEANING SERVICES ══ */}
+        <div ref={cleanRef} className="mb-20">
+          <CategoryHeading
+            icon={Sparkles}
+            num="Category 01"
+            title="Cleaning Services"
+            subtitle="Professional cleaning for residential and commercial properties across Winnipeg — done right, every time."
+            iconBg="bg-sky-500"
+            inView={cleanInView}
+          />
 
-        {/* ── CATEGORY 2: LED Installation ── */}
-        <div className="divider mb-16" aria-hidden="true" />
+          {/* Window cleaning — featured with detail page link */}
+          <FeaturedCard
+            service={cleaning[0]}
+            onQuote={goContact}
+            linkTo="/services/window-cleaning"
+          />
 
-        <CategoryBlock
-          icon={Lightbulb}
-          label="Category 2"
-          title="LED Installation"
-          subtitle="Elevate your home's curb appeal with permanent, professionally-installed LED lighting that lasts for years."
-          color="bg-amber-500"
-          featured={ledServices[0]}
-          rest={[]}
-          onQuote={scrollToContact}
-          delay={0.15}
-        />
+          {/* Rest of cleaning services */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {cleaning.slice(1).map((s, i) => (
+              <ServiceCard key={s.id} service={s} index={i} onQuote={goContact} />
+            ))}
+          </div>
+        </div>
 
-        {/* Bottom CTA */}
+        {/* ── Separator ── */}
+        <div className="relative my-4 mb-16" aria-hidden="true">
+          <div className="divider-sky" />
+          <div className="absolute inset-x-0 top-0 flex justify-center -translate-y-1/2">
+            <span className="bg-white px-4 text-sky-300">
+              <Lightbulb className="w-5 h-5" />
+            </span>
+          </div>
+        </div>
+
+        {/* ══ CATEGORY 2: LED INSTALLATION ══ */}
+        <div ref={ledRef}>
+          <CategoryHeading
+            icon={Lightbulb}
+            num="Category 02"
+            title="LED Installation"
+            subtitle="Elevate your home's curb appeal with permanent, app-controlled LED lighting that lasts for years."
+            iconBg="bg-amber-500"
+            inView={ledInView}
+          />
+
+          <FeaturedCard service={led} onQuote={goContact} />
+        </div>
+
+        {/* ── Bottom CTA ── */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={{ opacity: 0, y: 18 }}
+          animate={headerInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5 }}
           className="mt-14 text-center"
         >
-          <p className="text-brand-muted text-sm mb-4" style={{ fontFamily: "var(--font-inter)" }}>
-            Not sure what you need? Give us a call and we&apos;ll recommend the right service.
+          <p className="font-body text-brand-muted text-sm mb-5">
+            Not sure what you need? Give us a call — we&apos;ll recommend the right service.
           </p>
-          <a
-            href="tel:+14318164106"
-            className="btn-primary inline-flex"
-            aria-label="Call to discuss your cleaning needs"
-          >
+          <a href="tel:+14318164106" className="btn-sky inline-flex" aria-label="Call RiseClear">
             Call +1 431 816 4106
           </a>
         </motion.div>
