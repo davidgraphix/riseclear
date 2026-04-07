@@ -86,7 +86,7 @@ function EstimateCalc() {
   const baseRange: PriceRange | null =
     size && coverage ? BASE_PRICES[size][coverage] : null;
 
-  const addonTotal = [...addOns].reduce((sum, id) => sum + ADDON_PRICES[id], 0);
+  const addonTotal = Array.from(addOns).reduce((sum, id) => sum + ADDON_PRICES[id], 0);
 
   const estimate = baseRange
     ? { low: baseRange.low + addonTotal, high: baseRange.high + addonTotal }
