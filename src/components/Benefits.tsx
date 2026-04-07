@@ -42,7 +42,7 @@ export default function Benefits() {
             <div className="relative rounded-3xl overflow-hidden shadow-[0_24px_72px_rgba(14,165,233,0.14),0_8px_24px_rgba(12,26,46,0.06)] border border-sky-200">
               <div className="relative aspect-[4/5] bg-sky-100">
                 <Image
-                  src="/images/about-team.jpg"
+                  src="/images/about-team.jpeg"
                   alt="RiseClear team member delivering professional cleaning service in Winnipeg"
                   fill
                   className="object-cover"
