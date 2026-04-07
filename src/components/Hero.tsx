@@ -202,7 +202,7 @@ export default function Hero() {
                     <rect x="3" y="13" width="8" height="8" rx="1"/>
                     <rect x="13" y="13" width="8" height="8" rx="1"/>
                   </svg>
-                  <p className="text-sky-400 text-sm font-body">Add hero-bg.jpg to /public/images/</p>
+                  <p className="text-sky-400 text-sm font-body">Hero Image</p>
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-sky-900/40 via-transparent to-transparent" />
               </div>

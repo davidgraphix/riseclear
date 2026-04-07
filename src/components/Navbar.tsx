@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Services", href: "#services" },
@@ -47,16 +48,7 @@ export default function Navbar() {
             <Link href="/" className="flex items-center gap-3 group" aria-label="RiseClear — Home">
               {/* Icon */}
               <div className="relative w-10 h-10 flex-shrink-0">
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-sky-500 to-sky-700 shadow-sky group-hover:shadow-sky-lg transition-shadow duration-300" />
-                <div className="absolute inset-0 rounded-xl flex items-center justify-center">
-                  {/* Window-pane / RC mark */}
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-                    <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-                    <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-                    <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" fillOpacity="0.3" stroke="white" strokeWidth="1.8"/>
-                  </svg>
-                </div>
+                <Image src="/riseclear-logo.png" alt="RiseClear Logo" width={40} height={40} />
               </div>
 
               {/* Wordmark */}

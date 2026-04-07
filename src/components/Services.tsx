@@ -49,7 +49,7 @@ const cleaning: Service[] = [
     shortDesc: "Clear gutters and downspouts of debris to prevent water damage and protect your foundation.",
     features: ["Full debris removal", "Flush & flow test", "Downspout clearing", "Damage inspection"],
     img: "/images/gutter-cleaning.jpg",
-    imgAlt: "Gutter cleaning service on a residential property",
+    imgAlt: "Gutter cleaning service",
     icon: Droplets,
   },
   {
@@ -57,7 +57,7 @@ const cleaning: Service[] = [
     title: "Home Cleaning",
     shortDesc: "Regular or one-time professional cleaning for every room — tailored to your schedule and needs.",
     features: ["All rooms covered", "Flexible schedule", "Recurring plans", "Pet-friendly products"],
-    img: "/images/home-cleaning.jpg",
+    img: "/images/home-cleaning.jpeg",
     imgAlt: "Professional home cleaning service in Winnipeg",
     icon: Home,
   },
@@ -66,7 +66,7 @@ const cleaning: Service[] = [
     title: "Deep Cleaning",
     shortDesc: "Intensive top-to-bottom cleaning reaching every corner, surface, and hard-to-reach area.",
     features: ["Appliance interiors", "Baseboards & vents", "Behind furniture", "Full sanitization"],
-    img: "/images/deep-cleaning.jpg",
+    img: "/images/deep-cleaning.jpeg",
     imgAlt: "Deep cleaning service with professional equipment",
     icon: Sparkles,
   },
@@ -75,7 +75,7 @@ const cleaning: Service[] = [
     title: "Pressure Washing",
     shortDesc: "Restore driveways, decks, siding and patios to like-new condition with professional pressure washing.",
     features: ["Driveways & walkways", "Decks & patios", "Siding & fences", "Oil stain removal"],
-    img: "/images/pressure-washing.jpg",
+    img: "/images/pressure-washing.jpeg",
     imgAlt: "Pressure washing a residential driveway in Winnipeg",
     icon: Wind,
   },
@@ -84,7 +84,7 @@ const cleaning: Service[] = [
     title: "Move-In / Move-Out",
     shortDesc: "Thorough cleaning that meets landlord and real estate standards for a smooth, stress-free transition.",
     features: ["Deposit-ready results", "All surfaces cleaned", "Appliances included", "Same-day available"],
-    img: "/images/move-cleaning.jpg",
+    img: "/images/move-cleaning.jpeg",
     imgAlt: "Move-out cleaning service for Winnipeg properties",
     tag: "Popular",
     icon: MoveHorizontal,
@@ -116,18 +116,17 @@ function ServiceImage({ src, alt, fill = true, className = "" }: {
   src: string; alt: string; fill?: boolean; className?: string;
 }) {
   return (
-    <div className={`relative ${fill ? "absolute inset-0" : "w-full h-full"}`}>
+    <div className="relative w-full h-full">
       <Image
         src={src}
         alt={alt}
-        fill={fill}
+        fill
         className={`object-cover ${className}`}
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 40vw"
         onError={(e) => {
-          const wrapper = (e.target as HTMLImageElement).parentElement;
-          if (wrapper) {
-            wrapper.classList.add("img-placeholder");
-            (e.target as HTMLImageElement).style.display = "none";
+          const target = e.currentTarget as HTMLImageElement;
+          if (!target.src.includes("/images/fallback.jpg")) {
+            target.src = "/images/fallback.jpg";
           }
         }}
       />

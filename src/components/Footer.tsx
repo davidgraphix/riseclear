@@ -5,12 +5,13 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
 import { Phone, Mail, MapPin, MessageCircle, ArrowUpRight } from "lucide-react";
+import Image from "next/image";
 
-const navLinks   = ["Services","How It Works","Why Choose Us","Testimonials","Contact"];
-const navHrefs   = ["#services","#process","#benefits","#testimonials","#contact"];
+const navLinks = ["Services", "How It Works", "Why Choose Us", "Testimonials", "Contact"];
+const navHrefs = ["#services", "#process", "#benefits", "#testimonials", "#contact"];
 const serviceLinks = [
-  "Window Cleaning","Gutter Cleaning","Home Cleaning","Deep Cleaning",
-  "Pressure Washing","Move-In / Move-Out","LED Light Installation",
+  "Window Cleaning", "Gutter Cleaning", "Home Cleaning", "Deep Cleaning",
+  "Pressure Washing", "Move-In / Move-Out", "LED Light Installation",
 ];
 
 export default function Footer() {
@@ -28,15 +29,8 @@ export default function Footer() {
           <motion.div initial={{ opacity: 0, y: 18 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.5 }}>
             <Link href="/" className="flex items-center gap-3 group mb-5 w-fit" aria-label="RiseClear">
               <div className="relative w-10 h-10 flex-shrink-0">
-                <div className="absolute inset-0 rounded-xl" style={{ background: "linear-gradient(135deg,#0EA5E9,#0369A1)" }} />
-                <div className="absolute inset-0 flex items-center justify-center rounded-xl">
-                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-                    <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-                    <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-                    <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-                    <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="1.8"/>
-                  </svg>
-                </div>
+                <Image src="/riseclear-logo.png" alt="RiseClear Logo" width={40} height={40} />
+
               </div>
               <div>
                 <span className="font-display font-bold text-[1.0625rem] text-white tracking-tight block">
@@ -52,8 +46,8 @@ export default function Footer() {
 
             <div className="space-y-3">
               {[
-                { href: "tel:+14318164106",          icon: Phone,   text: "+1 431 816 4106" },
-                { href: "mailto:info@risecleaning.ca", icon: Mail,   text: "info@risecleaning.ca" },
+                { href: "tel:+14318164106", icon: Phone, text: "+1 431 816 4106" },
+                { href: "mailto:info@risecleaning.ca", icon: Mail, text: "info@risecleaning.ca" },
               ].map(({ href, icon: Icon, text }) => (
                 <a key={text} href={href} className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-white transition-colors group font-body">
                   <Icon className="w-4 h-4 text-sky-400 flex-shrink-0 group-hover:scale-110 transition-transform" />
