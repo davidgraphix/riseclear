@@ -183,27 +183,29 @@ export default function Hero() {
             <div className="relative w-full rounded-3xl overflow-hidden shadow-[0_32px_80px_rgba(0,0,0,0.28)] border border-white/20">
               <div className="relative aspect-[5/4]">
                 <Image
-                  src="/images/hero-bg.jpg"
+                  src="/images/hero-bg.jpeg"
                   alt="RiseClear technician performing professional window cleaning in Winnipeg"
                   fill
                   priority
                   className="object-cover"
                   sizes="(max-width: 1280px) 50vw, 640px"
                   onError={(e) => {
-                    const t = e.target as HTMLImageElement;
-                    t.style.display = "none";
+                    const target = e.currentTarget as HTMLImageElement;
+                    if (!target.src.includes("/images/fallback.jpg")) {
+                      target.src = "/images/fallback.jpg";
+                    }
                   }}
                 />
-                {/* Placeholder when no image */}
+                {/* Placeholder when no image
                 <div className="absolute inset-0 img-placeholder flex-col gap-3">
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#0EA5E9" strokeWidth="1.5" aria-hidden="true">
-                    <rect x="3" y="3" width="8" height="8" rx="1"/>
-                    <rect x="13" y="3" width="8" height="8" rx="1"/>
-                    <rect x="3" y="13" width="8" height="8" rx="1"/>
-                    <rect x="13" y="13" width="8" height="8" rx="1"/>
+                    <rect x="3" y="3" width="8" height="8" rx="1" />
+                    <rect x="13" y="3" width="8" height="8" rx="1" />
+                    <rect x="3" y="13" width="8" height="8" rx="1" />
+                    <rect x="13" y="13" width="8" height="8" rx="1" />
                   </svg>
                   <p className="text-sky-400 text-sm font-body">Hero Image</p>
-                </div>
+                </div> */}
                 <div className="absolute inset-0 bg-gradient-to-t from-sky-900/40 via-transparent to-transparent" />
               </div>
             </div>
