@@ -162,7 +162,7 @@ export async function POST(request: NextRequest) {
               <p>Thank you for reaching out to <strong>RiseClear Property Services</strong>. We've received your quote request and our team will be in touch with you shortly — typically within a few hours.</p>
 
               <div class="highlight">
-                ⚡ For faster service, you can also reach us directly by phone or WhatsApp at <strong>+1 431 816 4106</strong>.
+                ⚡ For faster service, you can also reach us directly by phone at <strong>+1 431 816 4106</strong>, or DM us on Instagram.
               </div>
 
               <p>While you wait, here's a quick look at what we can help you with:</p>
@@ -175,7 +175,7 @@ export async function POST(request: NextRequest) {
                 <li>✅ Permanent LED Light Installation</li>
               </ul>
 
-              <a href="https://wa.me/14318164106?text=Hi%2C%20I%27m%20following%20up%20on%20my%20quote%20request" class="btn">💬 Message Us on WhatsApp</a>
+              <a href="https://www.instagram.com/riseclearpropertyservices/" class="btn">📸 DM Us on Instagram</a>
             </div>
             <div class="footer">
               <div class="footer-text">

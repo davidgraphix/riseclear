@@ -8,7 +8,8 @@ import Testimonials from "@/components/Testimonials";
 import CTA from "@/components/CTA";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import WhatsAppButton from "@/components/InstagramButton";
+import InstagramButton from "@/components/InstagramButton";
 
 export default function Home() {
   return (
@@ -23,7 +24,7 @@ export default function Home() {
       <CTA />
       <Contact />
       <Footer />
-      <WhatsAppButton />
+      <InstagramButton />
     </main>
   );
 }

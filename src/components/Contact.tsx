@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import {
-  Phone, Mail, MapPin, MessageCircle,
+  Phone, Mail, MapPin,
   Send, CheckCircle2, AlertCircle, Loader2, Clock,
 } from "lucide-react";
 
@@ -71,7 +71,7 @@ export default function Contact() {
           </motion.h2>
           <motion.p initial={{ opacity: 0, y: 14 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ delay: 0.14 }}
             className="font-body text-brand-body text-[1.0625rem] max-w-xl mx-auto">
-            Fill the form, call us, or WhatsApp. We respond to all inquiries within a few hours.
+            Fill the form, call us, or DM us on Instagram. We respond to all inquiries within a few hours.
           </motion.p>
         </div>
 
@@ -100,20 +100,24 @@ export default function Contact() {
               </a>
             ))}
 
-            {/* WhatsApp */}
+            {/* Instagram */}
             <a
-              href="https://wa.me/14318164106?text=Hello%2C%20I%27m%20interested%20in%20your%20cleaning%20services"
+              href="https://www.instagram.com/riseclearpropertyservices/"
               target="_blank" rel="noopener noreferrer"
-              className="group flex items-center gap-4 rounded-2xl p-5 border border-[#25D366]/25 hover:border-[#25D366]/60 bg-[#25D366]/5 hover:bg-[#25D366]/10 transition-all duration-300 hover:-translate-y-0.5"
-              aria-label="WhatsApp RiseClear"
+              className="group flex items-center gap-4 rounded-2xl p-5 border transition-all duration-300 hover:-translate-y-0.5"
+              style={{ background: "rgba(240,148,51,0.05)", borderColor: "rgba(220,39,67,0.2)" }}
+              aria-label="RiseClear on Instagram"
             >
-              <div className="w-12 h-12 bg-[#25D366]/15 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
-                <MessageCircle className="w-5 h-5 text-[#25D366]" />
+              <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
+                   style={{ background: "linear-gradient(135deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%)" }}>
+                <svg className="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                </svg>
               </div>
               <div>
-                <p className="font-body text-xs font-semibold uppercase tracking-wider text-brand-muted mb-0.5">WhatsApp</p>
-                <p className="font-display font-bold text-brand-ink text-[0.9375rem]">Message Us Directly</p>
-                <p className="font-body text-xs text-brand-muted mt-0.5">Fastest response method</p>
+                <p className="font-body text-xs font-semibold uppercase tracking-wider text-brand-muted mb-0.5">Instagram</p>
+                <p className="font-display font-bold text-brand-ink text-[0.9375rem]">@riseclearpropertyservices</p>
+                <p className="font-body text-xs text-brand-muted mt-0.5">DM us for fast quotes</p>
               </div>
             </a>
 

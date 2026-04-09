@@ -10,7 +10,7 @@ const steps = [
     n: "01",
     icon: ClipboardList,
     title: "Request Your Quote",
-    desc: "Call, WhatsApp, or fill our online form. We respond fast with a transparent, no-surprise price — free and with zero obligation.",
+    desc: "Call, DM us on Instagram, or fill our online form. We respond fast with a transparent, no-surprise price — free and with zero obligation.",
     note: "Free · No obligation · Same-day response",
     iconBg: "bg-sky-100 text-sky-600",
     numColor: "#BAE6FD",
