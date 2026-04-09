@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
+import InstagramButton from "@/components/InstagramButton";
 
 export const metadata: Metadata = {
   title: "Window Cleaning in Winnipeg | RiseClear Property Services",
@@ -26,7 +26,7 @@ export default function WindowCleaningLayout({
       <Navbar />
       <div className="pt-[70px]">{children}</div>
       <Footer />
-      <WhatsAppButton />
+      <InstagramButton />
     </>
   );
 }
