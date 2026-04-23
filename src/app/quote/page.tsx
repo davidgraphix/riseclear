@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowLeft, Phone, Shield, Star, Clock } from "lucide-react";
 import MultiStepForm from "@/components/MultiStepForm";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Get a Free Quote | RiseClear Property Services",
@@ -47,17 +48,8 @@ export default function QuotePage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl pt-10 pb-8 text-center">
         {/* Logo wordmark */}
         <div className="flex items-center justify-center gap-2.5 mb-8">
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center"
-            style={{ background: "rgba(255,255,255,0.20)", border: "1px solid rgba(255,255,255,0.30)" }}
-          >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-              <rect x="2" y="2" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-              <rect x="11" y="2" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-              <rect x="2" y="11" width="7" height="7" rx="1.5" stroke="white" strokeWidth="1.8"/>
-              <rect x="11" y="11" width="7" height="7" rx="1.5" fill="white" fillOpacity="0.25" stroke="white" strokeWidth="1.8"/>
-            </svg>
-          </div>
+                          <Image src="/riseclear-logo.png" alt="RiseClear Logo" width={40} height={40} />
+          
           <span
             className="font-bold text-white text-lg tracking-tight"
             style={{ fontFamily: "var(--font-plus-jakarta)" }}

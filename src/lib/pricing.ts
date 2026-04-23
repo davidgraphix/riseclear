@@ -114,3 +114,90 @@ export const COVERAGE_LABELS: Record<Exclude<ServiceCoverage, "">, string> = {
   interior: "Interior Only",
   both:     "Both Sides (Interior + Exterior)",
 };
+
+// ─────────────────────────────────────────────────────────────────────────────
+// HOUSE CLEANING PRICING
+// Added for the /services/house-cleaning booking page.
+// Existing window cleaning logic above is unchanged.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type CleaningFrequency =
+  | "one-time"
+  | "weekly"
+  | "biweekly"
+  | "every-4-weeks";
+
+export type CleaningExtraKey =
+  | "fridge"
+  | "oven"
+  | "interior-windows";
+
+// ── Frequency config ──────────────────────────────────────────────────────────
+export const CLEANING_FREQUENCIES: {
+  id:       CleaningFrequency;
+  label:    string;
+  sublabel: string;
+  discount: number; // 0–1
+}[] = [
+  { id: "one-time",      label: "One-Time",          sublabel: "",               discount: 0    },
+  { id: "weekly",        label: "Weekly",            sublabel: "Save 10%",       discount: 0.10 },
+  { id: "biweekly",      label: "Every Other Week",  sublabel: "Save 5%",        discount: 0.05 },
+  { id: "every-4-weeks", label: "Every 4 Weeks",     sublabel: "",               discount: 0    },
+];
+
+// ── Extras config ─────────────────────────────────────────────────────────────
+export const CLEANING_EXTRAS: {
+  id:    CleaningExtraKey;
+  label: string;
+  desc:  string;
+  price: number;
+  icon:  string; // emoji fallback — replaced by Lucide in component
+}[] = [
+  { id: "fridge",           label: "Inside Fridge",      desc: "Full interior clean & deodorize", price: 25, icon: "🧊" },
+  { id: "oven",             label: "Inside Oven",         desc: "Degrease racks, walls & door",    price: 25, icon: "🔥" },
+  { id: "interior-windows", label: "Interior Windows",   desc: "Streak-free interior glass",       price: 30, icon: "🪟" },
+];
+
+// ── Pricing per room ──────────────────────────────────────────────────────────
+export const BEDROOM_RATE  = 35; // per bedroom
+export const BATHROOM_RATE = 25; // per bathroom
+
+// ── Main house cleaning calculator ───────────────────────────────────────────
+/**
+ * Calculates the total for a house cleaning booking.
+ *
+ * Formula:
+ *   base       = (bedrooms × $35) + (bathrooms × $25)
+ *   extrasTotal = sum of selected extra prices
+ *   discount    = frequency discount (0, 5%, or 10%)
+ *   total       = (base + extrasTotal) × (1 − discount)
+ */
+export function calculateCleaningPrice(params: {
+  bedrooms:  number;
+  bathrooms: number;
+  frequency: CleaningFrequency;
+  extras:    Set<CleaningExtraKey>;
+}): {
+  base:        number;
+  extrasTotal: number;
+  discount:    number; // 0–1
+  discountAmt: number; // dollar amount saved
+  total:       number;
+} {
+  const { bedrooms, bathrooms, frequency, extras } = params;
+
+  const base = bedrooms * BEDROOM_RATE + bathrooms * BATHROOM_RATE;
+
+  const extrasTotal = CLEANING_EXTRAS.filter((e) => extras.has(e.id)).reduce(
+    (sum, e) => sum + e.price,
+    0
+  );
+
+  const freq    = CLEANING_FREQUENCIES.find((f) => f.id === frequency)!;
+  const discount = freq.discount;
+  const subtotal = base + extrasTotal;
+  const discountAmt = Math.round(subtotal * discount * 100) / 100;
+  const total = Math.round((subtotal - discountAmt) * 100) / 100;
+
+  return { base, extrasTotal, discount, discountAmt, total };
+}
