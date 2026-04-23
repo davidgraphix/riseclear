@@ -69,7 +69,7 @@ export default function Navbar() {
                 <button
                   key={link.label}
                   onClick={() => scrollTo(link.href)}
-                  className="px-4 py-2 text-[0.875rem] font-medium text-brand-body hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-all duration-180 cursor-pointer font-body"
+                  className="px-4 py-2 text-[0.875rem] font-semibold text-brand-body hover:text-sky-600 hover:bg-sky-50 rounded-lg transition-all duration-180 cursor-pointer  font-body"
                 >
                   {link.label}
                 </button>
@@ -88,13 +88,9 @@ export default function Navbar() {
                 </div>
                 +1 431 816 4106
               </a>
-              <button
-                onClick={() => scrollTo("#contact")}
-                className="btn-sky text-sm px-5 py-2.5"
-                aria-label="Get a free quote"
-              >
-                Get a Free Quote
-              </button>
+              <Link href="/quote" className="btn-sky text-sm px-5 py-2.5">
+                  Get a Free Quote
+                </Link>
             </div>
 
             {/* ── Mobile toggle ── */}
@@ -146,12 +142,9 @@ export default function Navbar() {
                   <Phone className="w-4 h-4 text-sky-600" />
                   +1 431 816 4106
                 </a>
-                <button
-                  onClick={() => scrollTo("#contact")}
-                  className="btn-sky w-full py-3.5 text-base"
-                >
+                 <Link href="/quote" className="btn-sky w-full py-3.5 text-base text-center">
                   Get a Free Quote
-                </button>
+                </Link>
               </div>
             </div>
           </motion.div>

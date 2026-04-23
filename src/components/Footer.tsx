@@ -136,6 +136,8 @@ export default function Footer() {
                 </svg>
                 Follow on Instagram
               </a>
+              <Link href="/quote" className="btn-sky-outline w-full py-3 text-sm text-center">Get Instant Estimate</Link>
+
             </div>
 
             <div className="mt-5 p-4 rounded-xl bg-white/5 border border-white/10">

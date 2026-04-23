@@ -333,7 +333,7 @@ export default function WindowCleaningPage() {
                 <span className="w-1.5 h-1.5 rounded-full bg-amber-300 animate-pulse-slow" />
                 Cleaning Services · Window Cleaning
               </span>
-              <h1 className="font-display font-900 text-4xl sm:text-5xl text-white leading-[1.07] tracking-tight mb-5">
+              <h1 className="font-display font-900 text-4xl sm:text-5xl font-bold  text-white leading-[1.07] tracking-tight mb-5">
                 Professional<br />Window Cleaning<br />
                 <span style={{ background: "linear-gradient(135deg,#FFFFFF,#BAE6FD)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                   in Winnipeg
@@ -541,7 +541,7 @@ export default function WindowCleaningPage() {
               <Phone className="w-5 h-5" />
               Call Now — Free Quote
             </a>
-            <Link href="/#contact" className="btn-white-outline w-full sm:w-auto px-9 py-4 text-[0.9375rem]">
+            <Link href="/quote" className="btn-white-outline w-full sm:w-auto px-9 py-4 text-[0.9375rem]">
               Request Online
             </Link>
           </div>

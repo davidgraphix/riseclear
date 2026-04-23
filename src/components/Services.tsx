@@ -187,13 +187,8 @@ function FeaturedCard({ service, onQuote, linkTo }: {
               <ArrowRight className="w-4 h-4" />
             </Link>
           ) : null}
-          <button
-            onClick={onQuote}
-            className={linkTo ? "btn-sky-outline self-start" : "btn-sky self-start"}
-            aria-label={`Book ${service.title}`}
-          >
-            Book This Service
-          </button>
+          <Link href="/quote" className={`${linkTo ? "btn-sky-outline" : "btn-sky"} self-start cursor-pointer`}>Get a Quote</Link>
+
         </div>
       </div>
     </motion.div>
@@ -240,14 +235,14 @@ function ServiceCard({ service, index, onQuote }: {
         <p className="font-body text-sm text-brand-muted leading-relaxed mb-4 flex-1">
           {service.shortDesc}
         </p>
-        <button
-          onClick={onQuote}
+        <Link
+          href="/quote"
           className="flex items-center gap-1.5 text-sm font-semibold text-sky-600 hover:text-sky-700 transition-colors group/btn cursor-pointer font-body"
           aria-label={`Get a quote for ${service.title}`}
         >
           Get a Quote
           <ArrowRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 transition-transform" />
-        </button>
+        </Link>
       </div>
     </motion.div>
   );
