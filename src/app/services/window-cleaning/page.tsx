@@ -111,12 +111,7 @@ export default function WindowCleaningPage() {
                     alt="RiseClear technician performing professional window cleaning in Winnipeg"
                     fill priority className="object-cover"
                     sizes="50vw"
-                    onError={(e) => {
-                      const t = e.target as HTMLImageElement;
-                      t.style.display = "none";
-                      const w = t.parentElement;
-                      if (w) w.classList.add("img-placeholder");
-                    }}
+                    
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-sky-900/30 to-transparent" />
                 </div>
