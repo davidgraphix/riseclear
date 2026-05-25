@@ -78,25 +78,6 @@ export const SERVICES: ServiceItem[] = [
     slug:     "house-cleaning",
     category: "residential",
   },
-    // ── PERMANENT LED LIGHT ────────────────────────────────────────────────────────
-  {
-    id:       "permanent-led-light",
-    title:    "Permanent LED Lighting",
-    shortDesc:"Energy-efficient LED lighting solutions for residential and commercial properties.",
-    features: [
-      "Residential & commercial",
-      "Interior & exterior options",
-      "Gutter cleaning add-on",
-      "High-reach capability",
-      "Eco-friendly solutions",
-      "Streak-free guarantee",
-    ],
-    img:      "/images/led-installation.jpeg",
-    imgAlt:   "Professional LED lighting installation in Winnipeg",
-    tag:      null,
-    slug:     null,
-    category: "permanent-led-light",
-  },
   // ── WINDOW CLEANING ────────────────────────────────────────────────────────
   {
     id:       "window",
@@ -116,6 +97,46 @@ export const SERVICES: ServiceItem[] = [
     slug:     "window-cleaning",
     category: "window",
   },
+    // ── PERMANENT LED LIGHT ────────────────────────────────────────────────────────
+  {
+    id:       "permanent-led-light",
+    title:    "Permanent LED Lighting",
+    shortDesc:"Energy-efficient LED lighting solutions for residential and commercial properties.",
+    features: [
+      "Residential & commercial",
+      "Interior & exterior options",
+      "Gutter cleaning add-on",
+      "High-reach capability",
+      "Eco-friendly solutions",
+      "Streak-free guarantee",
+    ],
+    img:      "/images/led-installation.jpeg",
+    imgAlt:   "Professional LED lighting installation in Winnipeg",
+    tag:      null,
+    slug:     null,
+    category: "permanent-led-light",
+  },
+
+   // ── POST CONSTRUCTION ──────────────────────────────────────────────────────
+  {
+    id:       "post-construction",
+    title:    "Post-Construction Cleaning",
+    shortDesc:"Thorough clean-up after renovations or new builds — dust, debris, and residue removed completely.",
+    features: [
+      "New builds & renovations",
+      "Dust & debris removal",
+      "Window & surface cleaning",
+      "All trades residue removed",
+      "Move-in ready finish",
+      "Same-day availability",
+    ],
+    img:      "/images/construction-cleaning.jpg",
+    imgAlt:   "Post-construction cleaning after a renovation in Winnipeg",
+    tag:      "New",
+    slug:     null,
+    category: "post-construction",
+  },
+  
   // ── COMMERCIAL ─────────────────────────────────────────────────────────────
   {
     id:       "commercial",
@@ -134,25 +155,5 @@ export const SERVICES: ServiceItem[] = [
     tag:      null,
     slug:     null,
     category: "commercial",
-  },
-  
-  // ── POST CONSTRUCTION ──────────────────────────────────────────────────────
-  {
-    id:       "post-construction",
-    title:    "Post-Construction Cleaning",
-    shortDesc:"Thorough clean-up after renovations or new builds — dust, debris, and residue removed completely.",
-    features: [
-      "New builds & renovations",
-      "Dust & debris removal",
-      "Window & surface cleaning",
-      "All trades residue removed",
-      "Move-in ready finish",
-      "Same-day availability",
-    ],
-    img:      "/images/construction-cleaning.jpg",
-    imgAlt:   "Post-construction cleaning after a renovation in Winnipeg",
-    tag:      "New",
-    slug:     null,
-    category: "post-construction",
   },
 ];
