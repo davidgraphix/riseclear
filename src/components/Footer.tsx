@@ -72,10 +72,10 @@ export default function Footer() {
                 <MapPin className="w-4 h-4 text-sky-400 flex-shrink-0" />
                 Winnipeg, Manitoba, Canada
               </div>
-              <a href="https://www.instagram.com/riseclearpropertyservices/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/riseclearcleaning/" target="_blank" rel="noopener noreferrer"
                 className="flex items-center gap-2.5 text-sm text-slate-300 hover:text-pink-400 transition-colors group font-body" aria-label="Instagram">
                 <IgIcon />
-                @riseclearpropertyservices
+                @riseclearcleaning
               </a>
             </div>
           </motion.div>
@@ -123,7 +123,7 @@ export default function Footer() {
                 <Phone className="w-4 h-4" /> Call Now
                 <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
               </a>
-              <a href="https://www.instagram.com/riseclearpropertyservices/" target="_blank" rel="noopener noreferrer"
+              <a href="https://www.instagram.com/riseclearcleaning/" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2.5 w-full text-white font-display font-semibold text-sm py-3 rounded-xl transition-all"
                 style={{ background:"linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)", boxShadow:"0 4px 14px rgba(220,39,67,0.28)" }}>
                 <IgIcon /> Follow on Instagram

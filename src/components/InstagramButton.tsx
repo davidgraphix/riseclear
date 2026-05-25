@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import { X, Phone } from "lucide-react";
 
-const IG_URL = "https://www.instagram.com/riseclearpropertyservices/";
+const IG_URL = "https://www.instagram.com/riseclearcleaning/";
 
 function InstagramIcon({ className = "w-6 h-6" }: { className?: string }) {
   return (
@@ -77,7 +77,7 @@ export default function InstagramButton() {
                   className="text-white/80 text-xs mt-0.5"
                   style={{ fontFamily: "var(--font-inter)" }}
                 >
-                  @riseclearpropertyservices
+                  @riseclearcleaning
                 </p>
               </div>
 

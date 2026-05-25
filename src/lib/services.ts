@@ -2,10 +2,10 @@
 
 // ── Service categories ────────────────────────────────────────────────────────
 export type ServiceCategory =
+| "permanent-led-light"
+| "window"
   | "residential"
   | "commercial"
-  | "window"
-  | "permanent-led-light"
   | "post-construction";
 
 // ── Residential sub-types ─────────────────────────────────────────────────────
@@ -94,7 +94,7 @@ export const SERVICES: ServiceItem[] = [
     img:      "/images/led-installation.jpeg",
     imgAlt:   "Professional LED lighting installation in Winnipeg",
     tag:      null,
-    slug:     "permanent-led-lighting",
+    slug:     null,
     category: "permanent-led-light",
   },
   // ── WINDOW CLEANING ────────────────────────────────────────────────────────
