@@ -1,15 +1,11 @@
 // src/lib/services.ts
-// ─────────────────────────────────────────────────────────────────────────────
-// Central service catalogue for RiseClear Property Services.
-// No pricing logic — purely structural / type definitions.
-// Pricing has been removed per client brief (lead-generation form only).
-// ─────────────────────────────────────────────────────────────────────────────
 
 // ── Service categories ────────────────────────────────────────────────────────
 export type ServiceCategory =
   | "residential"
   | "commercial"
   | "window"
+  | "permanent-led-light"
   | "post-construction";
 
 // ── Residential sub-types ─────────────────────────────────────────────────────
@@ -82,24 +78,24 @@ export const SERVICES: ServiceItem[] = [
     slug:     "house-cleaning",
     category: "residential",
   },
-  // ── COMMERCIAL ─────────────────────────────────────────────────────────────
+    // ── PERMANENT LED LIGHT ────────────────────────────────────────────────────────
   {
-    id:       "commercial",
-    title:    "Commercial Cleaning",
-    shortDesc:"Professional cleaning for offices, retail spaces, and commercial properties across Winnipeg.",
+    id:       "permanent-led-light",
+    title:    "Permanent LED Lighting",
+    shortDesc:"Energy-efficient LED lighting solutions for residential and commercial properties.",
     features: [
-      "Office & retail spaces",
-      "Flexible after-hours booking",
-      "Recurring contracts available",
-      "Fully insured & bonded",
-      "Customised cleaning plans",
-      "Consistent professional team",
+      "Residential & commercial",
+      "Interior & exterior options",
+      "Gutter cleaning add-on",
+      "High-reach capability",
+      "Eco-friendly solutions",
+      "Streak-free guarantee",
     ],
-    img:      "/images/commercial-cleaning.jpg",
-    imgAlt:   "Commercial office cleaning service in Winnipeg",
+    img:      "/images/led-installation.jpeg",
+    imgAlt:   "Professional LED lighting installation in Winnipeg",
     tag:      null,
-    slug:     null,
-    category: "commercial",
+    slug:     "permanent-led-lighting",
+    category: "permanent-led-light",
   },
   // ── WINDOW CLEANING ────────────────────────────────────────────────────────
   {
@@ -120,6 +116,26 @@ export const SERVICES: ServiceItem[] = [
     slug:     "window-cleaning",
     category: "window",
   },
+  // ── COMMERCIAL ─────────────────────────────────────────────────────────────
+  {
+    id:       "commercial",
+    title:    "Commercial Cleaning",
+    shortDesc:"Professional cleaning for offices, retail spaces, and commercial properties across Winnipeg.",
+    features: [
+      "Office & retail spaces",
+      "Flexible after-hours booking",
+      "Recurring contracts available",
+      "Fully insured & bonded",
+      "Customised cleaning plans",
+      "Consistent professional team",
+    ],
+    img:      "/images/commercial-cleaning.jpg",
+    imgAlt:   "Commercial office cleaning service in Winnipeg",
+    tag:      null,
+    slug:     null,
+    category: "commercial",
+  },
+  
   // ── POST CONSTRUCTION ──────────────────────────────────────────────────────
   {
     id:       "post-construction",

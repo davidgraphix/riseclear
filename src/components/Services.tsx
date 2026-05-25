@@ -5,7 +5,7 @@ import { useInView } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, CheckCircle2, Sparkles, Building2, AppWindow, HardHat } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles, Building2, AppWindow, HardHat, Lightbulb } from "lucide-react";
 import { SERVICES, type ServiceItem } from "@/lib/services";
 
 // ── Local image with graceful fallback ────────────────────────────────────────
@@ -30,6 +30,8 @@ const CAT_ICON: Record<string, React.ReactNode> = {
   residential:       <Sparkles    className="w-5 h-5 text-white" strokeWidth={2} />,
   commercial:        <Building2   className="w-5 h-5 text-white" strokeWidth={2} />,
   window:            <AppWindow   className="w-5 h-5 text-white" strokeWidth={2} />,
+  "permanent-led-light":            <Lightbulb   className="w-5 h-5 text-white" strokeWidth={2} />,
+
   "post-construction":<HardHat   className="w-5 h-5 text-white" strokeWidth={2} />,
 };
 
@@ -37,7 +39,9 @@ const CAT_COLOR: Record<string, string> = {
   residential:       "bg-sky-500",
   commercial:        "bg-violet-500",
   window:            "bg-sky-400",
+  "permanent-led-light": "bg-emerald-500",
   "post-construction":"bg-amber-500",
+
 };
 
 // ── Featured card (large, 2-col) ──────────────────────────────────────────────
