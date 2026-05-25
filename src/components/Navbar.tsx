@@ -88,7 +88,7 @@ export default function Navbar() {
                 </div>
                 +1 431 816 4106
               </a>
-              <Link href="/quote" className="btn-sky text-sm px-5 py-2.5">
+              <Link href="#contact" className="btn-sky text-sm px-5 py-2.5">
                   Get a Free Quote
                 </Link>
             </div>

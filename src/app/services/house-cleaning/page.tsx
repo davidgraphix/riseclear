@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import InstagramButton from "@/components/InstagramButton";
 import HouseCleaningForm from "@/components/form/HouseCleaningForm";
-
+  
 export const metadata: Metadata = {
   title: "Residential Cleaning in Winnipeg | RiseClear Property Services",
   description:

@@ -1,13 +1,5 @@
 "use client";
 
-/**
- * WindowCleaningForm — Inquiry-Only Form
- *
- * Window cleaning is now a secondary service.
- * NO pricing calculations, NO estimates.
- * Gutter cleaning is an optional add-on (not standalone).
- * Submits to existing POST /api/contact — shape unchanged.
- */
 
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
