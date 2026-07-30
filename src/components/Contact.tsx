@@ -89,7 +89,7 @@ export default function Contact() {
             ))}
 
             {/* Instagram */}
-            <a href="https://www.instagram.com/riseclearpropertyservices/" target="_blank" rel="noopener noreferrer"
+            <a href="https://www.instagram.com/riseclearcleaning/" target="_blank" rel="noopener noreferrer"
               className="group flex items-center gap-4 rounded-2xl p-5 border transition-all duration-300 hover:-translate-y-0.5"
               style={{ background:"rgba(240,148,51,0.05)", borderColor:"rgba(220,39,67,0.2)" }} aria-label="Instagram">
               <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform"
@@ -100,7 +100,7 @@ export default function Contact() {
               </div>
               <div>
                 <p className="font-body text-xs font-semibold uppercase tracking-wider text-brand-muted mb-0.5">Instagram</p>
-                <p className="font-display font-bold text-brand-ink text-[0.9375rem]">@riseclearpropertyservices</p>
+                <p className="font-display font-bold text-brand-ink text-[0.9375rem]">@riseclearcleaning</p>
                 <p className="font-body text-xs text-brand-muted mt-0.5">DM us for fast quotes</p>
               </div>
             </a>

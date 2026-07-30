@@ -100,7 +100,7 @@ export async function POST(request: NextRequest) {
             <div class="body">
               <div class="greeting">Hi ${name}, we got your message! 👋</div>
               <p>Thank you for reaching out to <strong>RiseClear Property Services</strong>. We've received your quote request and our team will be in touch shortly — typically within a few hours.</p>
-              <div class="highlight">⚡ For faster service, call us directly at <strong>+1 431 816 4106</strong> or DM us on Instagram @riseclearpropertyservices.</div>
+              <div class="highlight">⚡ For faster service, call us directly at <strong>+1 431 816 4106</strong> or DM us on Instagram @riseclearcleaning.</div>
               <p>Here's a quick look at what we can help you with:</p>
               <ul style="color:#4B5563;font-size:14px;line-height:2;padding-left:20px;">
                 <li>✅ Window Cleaning (Residential &amp; Commercial)</li>
@@ -110,7 +110,7 @@ export async function POST(request: NextRequest) {
                 <li>✅ Move-In / Move-Out Cleaning</li>
                 <li>✅ Permanent LED Light Installation</li>
               </ul>
-              <a href="https://www.instagram.com/riseclearpropertyservices/" class="btn">📸 DM Us on Instagram</a>
+              <a href="https://www.instagram.com/riseclearcleaning/" class="btn">📸 DM Us on Instagram</a>
             </div>
             <div class="footer">RiseClear Property Services<br>Winnipeg, Manitoba, Canada<br>📞 +1 431 816 4106 &nbsp;|&nbsp; ✉️ info@risecleaning.ca</div>
           </div>
