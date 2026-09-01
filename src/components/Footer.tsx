@@ -8,7 +8,7 @@ import { Phone, Mail, MapPin, ArrowUpRight } from "lucide-react";
 const NAV   = ["Services","How It Works","Why Choose Us","Testimonials","Contact"];
 const NAV_H = ["#services","#process","#benefits","#testimonials","#contact"];
 const SVCS  = [
-  "Residential Cleaning",
+  "Residential Cleaning", 
   "Commercial Cleaning",
   "Window Cleaning",
   "Post-Construction Cleaning",
